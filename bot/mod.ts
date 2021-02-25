@@ -1,5 +1,6 @@
 import { serve, ServerRequest } from "./deps.ts";
-import configs from './configs.ts';
+import configs from "./configs.ts";
+import { ready } from "./events/ready";
 
 /** Begins an http server that will handle incoming requests. */
 const server = serve({ port: configs.port });
@@ -25,6 +26,11 @@ async function handlePayload(request: ServerRequest) {
     const data = JSON.parse(new TextDecoder().decode(buffer));
 
     // TODO: PROCESS THE REQUEST
+    switch (data.type) {
+      case "READY":
+        ready(data.clusterID);
+        break;
+    }
   } catch (error) {
     // TODO: sentry
     console.log(error);

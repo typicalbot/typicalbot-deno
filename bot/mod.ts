@@ -1,9 +1,9 @@
 import { serve, ServerRequest } from "./deps.ts";
-import configs from "./configs.ts";
+import config from "./config.ts";
 import { ready } from "./events/ready";
 
 /** Begins an http server that will handle incoming requests. */
-const server = serve({ port: configs.port });
+const server = serve({ port: config.port });
 
 for await (const request of server) {
   handlePayload(request).catch((error) => {
@@ -16,7 +16,7 @@ for await (const request of server) {
 async function handlePayload(request: ServerRequest) {
   // INSTANTLY IGNORE ANY REQUESTS THAT DON'T HAVE THE SECRET AUTHORIZATION KEY
   const authorization = request.headers.get("authorization");
-  if (authorization !== configs.authorization) return;
+  if (authorization !== config.authorization) return;
 
   // READ BUFFER AFTER AUTH CHECK
   const buffer = await Deno.readAll(request.body);

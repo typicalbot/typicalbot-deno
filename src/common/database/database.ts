@@ -12,7 +12,7 @@ await client.connect({
   servers: [
     {
       host: "",
-      port: "27017",
+      port: 27017,
     },
   ],
   credentials: {

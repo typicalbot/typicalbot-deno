@@ -1,4 +1,8 @@
 /**
+ * NOTICE: THIS FILE HAS BEEN MODIFIED BY TYPICALBOT LLC IN COMPLIANCE WITH
+ *         THE APACHE 2.0 LICENSE FROM THE ORIGINAL WORK BY DISCORDENO.
+ * Modifications copyright (c) 2021 TypicalBot LLC
+ *
  * Copyright 2021 Discordeno
  *
  * Licensed under the Apache License, Version 2.0 (the "License");

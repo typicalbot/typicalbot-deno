@@ -2,6 +2,12 @@ import Command from "../common/command/Command.ts";
 import { bot } from "../cache.ts";
 
 const DiceCommand: Command = (message, args) => {
+  if (!args) {
+    return message.send(
+      "Invalid usage. Please use the following usage `$$dice XdY` where X is the amount of dices and Y is amount of sides.",
+    );
+  }
+
   // syntax: XdY
   // X = number of dices
   // Y = number of sides per dice

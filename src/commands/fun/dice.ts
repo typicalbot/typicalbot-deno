@@ -1,5 +1,5 @@
-import Command from "../common/command/Command.ts";
-import { bot } from "../cache.ts";
+import Command from "../../common/command/Command.ts";
+import { bot } from "../../cache.ts";
 
 const DiceCommand: Command = (message, args) => {
   if (!args) {

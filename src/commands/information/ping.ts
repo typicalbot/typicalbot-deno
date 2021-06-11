@@ -1,5 +1,5 @@
-import Command from "../common/command/Command.ts";
-import { bot } from "../cache.ts";
+import Command from "../../common/command/Command.ts";
+import { bot } from "../../cache.ts";
 
 const PingCommand: Command = async (message) => {
   const ping = await message.send(`Pong!`);

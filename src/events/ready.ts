@@ -1,5 +1,10 @@
-import { EventHandlers } from '../../deps.ts';
+import { bot } from "../cache.ts";
 
-const Ready: EventHandlers = () => {
-    console.log('Ready');
-}
+const Ready = () => {
+  console.log("Ready");
+
+  console.log(`Loaded ${bot.commands.size} commands`);
+  console.log(`Loaded ${Object.keys(bot.events).length} events`);
+};
+
+bot.events.ready = Ready;

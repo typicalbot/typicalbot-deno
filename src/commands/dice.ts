@@ -1,4 +1,5 @@
 import Command from "../common/command/Command.ts";
+import { bot } from "../cache.ts";
 
 const DiceCommand: Command = (message, args) => {
   // syntax: XdY
@@ -41,4 +42,4 @@ DiceCommand.defaultArguments = [
   "2d6",
 ];
 
-export default DiceCommand;
+bot.commands.set("dice", DiceCommand);

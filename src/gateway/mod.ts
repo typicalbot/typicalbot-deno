@@ -1,5 +1,9 @@
 import { startGateway } from "../../deps.ts";
-import { DISCORD_TOKEN, EVENT_HANDLER_URL, EVENT_HANDLER_SECRET_KEY } from "../../configs.ts";
+import {
+  DISCORD_TOKEN,
+  EVENT_HANDLER_SECRET_KEY,
+  EVENT_HANDLER_URL,
+} from "../../configs.ts";
 
 function startup() {
   startGateway({

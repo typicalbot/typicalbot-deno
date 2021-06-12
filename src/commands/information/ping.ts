@@ -1,10 +1,10 @@
 import Command from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import {
+  DiscordApplicationCommandOptionTypes,
   DiscordInteractionResponseTypes,
   sendInteractionResponse,
   snowflakeToBigint,
-    DiscordApplicationCommandOptionTypes
 } from "../../../deps";
 
 const PingCommand: Command = async (message) => {
@@ -29,11 +29,11 @@ PingCommand.slash = async (interaction) => {
 };
 
 PingCommand.slash.options = [
-    {
-        name: 'ping',
-        description: 'Check to see if TypicalBot is responsive.',
-        type: DiscordApplicationCommandOptionTypes.User
-    }
+  {
+    name: "ping",
+    description: "Check to see if TypicalBot is responsive.",
+    type: DiscordApplicationCommandOptionTypes.User,
+  },
 ];
 
 bot.commands.set("ping", PingCommand);

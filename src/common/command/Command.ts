@@ -4,6 +4,7 @@ import {
   SlashCommandInteraction,
 } from "../../../deps.ts";
 
+// deno-lint-ignore no-explicit-any
 interface Command<A = any[]> {
   (message: DiscordenoMessage, args: A): Promise<unknown> | unknown;
   slash?: SlashCommand;

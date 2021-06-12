@@ -5,7 +5,7 @@ import {
   EVENT_HANDLER_URL,
 } from "../../configs.ts";
 
-function startup() {
+export function startup() {
   startGateway({
     token: DISCORD_TOKEN,
     intents: [

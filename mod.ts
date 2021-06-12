@@ -1,5 +1,5 @@
 import { EVENT_HANDLER_PORT, EVENT_HANDLER_SECRET_KEY } from "./config.ts";
-import { camelize, GatewayPayload, handlers } from "./deps.ts";
+import { camelize, GatewayPayload, handlers, updateEventHandlers } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
 
@@ -9,6 +9,9 @@ await Promise.all([
 ].map((path) => importDirectory(Deno.realPathSync(path))));
 
 await fileLoader();
+
+// Setup event handlers internally so when events come in below it uses our events
+updateEventHandlers(bot.events);
 
 // Start listening on localhost.
 const server = Deno.listen({ port: parseInt(EVENT_HANDLER_PORT!) });

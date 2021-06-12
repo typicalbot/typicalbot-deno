@@ -1,5 +1,11 @@
 import Command from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import {
+  DiscordInteractionResponseTypes,
+  sendInteractionResponse,
+  snowflakeToBigint,
+    DiscordApplicationCommandOptionTypes
+} from "../../../deps";
 
 const PingCommand: Command = async (message) => {
   const ping = await message.send(`Pong!`);
@@ -8,5 +14,26 @@ const PingCommand: Command = async (message) => {
     `Pong! Command Execution: ${ping.timestamp - message.timestamp}ms`,
   );
 };
+
+PingCommand.slash = async (interaction) => {
+  return await sendInteractionResponse(
+    snowflakeToBigint(interaction.id),
+    interaction.token,
+    {
+      type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+      data: {
+        content: "Pong",
+      },
+    },
+  );
+};
+
+PingCommand.slash.options = [
+    {
+        name: 'ping',
+        description: 'Check to see if TypicalBot is responsive.',
+        type: DiscordApplicationCommandOptionTypes.User
+    }
+];
 
 bot.commands.set("ping", PingCommand);

@@ -1,4 +1,8 @@
-import { DiscordenoMessage, SlashCommandInteraction } from "../../../deps.ts";
+import {
+  ApplicationCommandOption,
+  DiscordenoMessage,
+  SlashCommandInteraction,
+} from "../../../deps.ts";
 
 interface Command<A = any[]> {
   (message: DiscordenoMessage, args: A): Promise<unknown> | unknown;
@@ -8,6 +12,7 @@ interface Command<A = any[]> {
 
 interface SlashCommand {
   (interaction: SlashCommandInteraction): Promise<unknown> | unknown;
+  options?: ApplicationCommandOption;
 }
 
 export default Command;

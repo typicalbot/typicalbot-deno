@@ -5,3 +5,4 @@ export const EVENT_HANDLER_URL = Deno.env.get("EVENT_HANDLER_URL");
 export const EVENT_HANDLER_SECRET_KEY = Deno.env.get(
   "EVENT_HANDLER_SECRET_KEY",
 );
+export const INTERNAL_API = Deno.env.get("INTERNAL_API");

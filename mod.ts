@@ -59,13 +59,16 @@ for await (const conn of server) {
       }
 
       const json = camelize<GatewayPayload>(await requestEvent.request.json());
-      if (json.t && json.t !== "RESUMED") {
+      // @ts-ignore type error
+      if (json.data.t && json.data.t !== "RESUMED") {
         // @ts-ignore our ws will forcefully add this
         const shardId = json.shardId;
         // When a guild or something isnt in cache this will fetch it before doing anything else
-        await bot.events.dispatchRequirements?.(json, shardId);
+        // @ts-ignore type error
+        await bot.events.dispatchRequirements?.(json.data, shardId);
 
-        handlers[json.t]?.(json, shardId);
+        // @ts-ignore type error
+        handlers[json.data.t]?.(json.data, shardId);
       }
 
       requestEvent.respondWith(

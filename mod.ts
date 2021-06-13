@@ -1,5 +1,6 @@
 import {
   DISCORD_TOKEN,
+  DISCORD_ID,
   EVENT_HANDLER_PORT,
   EVENT_HANDLER_SECRET_KEY,
 } from "./config.ts";
@@ -9,6 +10,8 @@ import {
   handlers,
   rest,
   updateEventHandlers,
+  setBotId,
+  setApplicationId
 } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
@@ -25,6 +28,9 @@ updateEventHandlers(bot.events);
 
 // Prepare the `rest` system to work
 rest.token = `Bot ${DISCORD_TOKEN}`;
+// Manually set botId and applicationId as ready event not emitted
+setBotId(DISCORD_ID!);
+setApplicationId(DISCORD_ID!);
 
 // Start listening on localhost.
 const server = Deno.listen({ port: parseInt(EVENT_HANDLER_PORT!) });

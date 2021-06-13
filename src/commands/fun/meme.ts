@@ -7,6 +7,7 @@ const MemeCommand: Command = async (message) => {
   )
     .then((res) => res.json());
 
+  // deno-lint-ignore no-explicit-any
   const raw = children.filter((c: any) => c.data.over_18 === false);
 
   if (raw.length === 0) {

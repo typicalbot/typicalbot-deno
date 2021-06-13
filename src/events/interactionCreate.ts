@@ -6,7 +6,7 @@ import {
   SlashCommandInteraction,
 } from "../../deps.ts";
 
-const InteractionCreate = (data: Interaction, member?: DiscordenoMember) => {
+const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {
   // Slash command was executed
   if (data.type === DiscordInteractionTypes.ApplicationCommand) {
     // Grab name of slash command

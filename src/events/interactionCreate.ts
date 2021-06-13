@@ -1,17 +1,11 @@
 import { bot } from "../cache.ts";
-import {
-  DiscordenoMember,
-  DiscordInteractionTypes,
-  Interaction,
-  isSlashCommand,
-  SlashCommandInteraction,
-} from "../../deps.ts";
+import { DiscordenoMember, Interaction, isSlashCommand } from "../../deps.ts";
 
 const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {
   // Slash command was executed
   if (isSlashCommand(data)) {
     // Grab name of slash command
-    const name = (data as SlashCommandInteraction).data?.name;
+    const name = data.data?.name;
 
     if (!name) return;
 
@@ -21,7 +15,7 @@ const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {
     if (!command) return;
 
     // Run slash execution
-    command.slash?.(data as SlashCommandInteraction);
+    command.slash?.(data);
   }
 };
 

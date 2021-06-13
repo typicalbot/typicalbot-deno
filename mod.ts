@@ -1,8 +1,21 @@
-import { startBot } from "./deps.ts";
-import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
+import {
+  DISCORD_ID,
+  DISCORD_TOKEN,
+  EVENT_HANDLER_PORT,
+  EVENT_HANDLER_SECRET_KEY,
+} from "./config.ts";
+import {
+  camelize,
+  GatewayPayload,
+  handlers,
+  rest,
+  setApplicationId,
+  setBotId,
+  updateEventHandlers,
+} from "./deps.ts";
 import { bot } from "./src/cache.ts";
+import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
 
-// Load commands and events
 await Promise.all([
   "./src/commands",
   "./src/events",
@@ -10,11 +23,59 @@ await Promise.all([
 
 await fileLoader();
 
-// Start bot
-console.log("Starting bot process");
+// Setup event handlers internally so when events come in below it uses our events
+updateEventHandlers(bot.events);
 
-startBot({
-  token: "",
-  intents: ["Guilds", "GuildMessages"],
-  eventHandlers: bot.events,
-});
+// Prepare the `rest` system to work
+rest.token = `Bot ${DISCORD_TOKEN}`;
+// Manually set botId and applicationId as ready event not emitted
+setBotId(DISCORD_ID!);
+setApplicationId(DISCORD_ID!);
+
+// Start listening on localhost.
+const server = Deno.listen({ port: parseInt(EVENT_HANDLER_PORT!) });
+console.log(`HTTP webserver running.  Access it at:  http://localhost:8080/`);
+
+// Connections to the server will be yielded up as an async iterable.
+for await (const conn of server) {
+  // In order to not be blocking, we need to handle each connection individually
+  // in its own async function.
+  (async () => {
+    // This "upgrades" a network connection into an HTTP connection.
+    const httpConn = Deno.serveHttp(conn);
+    // Each request sent over the HTTP connection will be yielded as an async
+    // iterator from the HTTP connection.
+    for await (const requestEvent of httpConn) {
+      if (
+        !EVENT_HANDLER_SECRET_KEY ||
+        EVENT_HANDLER_SECRET_KEY !==
+          requestEvent.request.headers.get("AUTHORIZATION")
+      ) {
+        return requestEvent.respondWith(
+          new Response(JSON.stringify({ error: "Invalid secret key." }), {
+            status: 200,
+          }),
+        );
+      }
+
+      const json = camelize<GatewayPayload>(await requestEvent.request.json());
+      // @ts-ignore type error
+      if (json.data.t && json.data.t !== "RESUMED") {
+        // @ts-ignore our ws will forcefully add this
+        const shardId = json.shardId;
+        // When a guild or something isnt in cache this will fetch it before doing anything else
+        // @ts-ignore type error
+        await bot.events.dispatchRequirements?.(json.data, shardId);
+
+        // @ts-ignore type error
+        handlers[json.data.t]?.(json.data, shardId);
+      }
+
+      requestEvent.respondWith(
+        new Response(JSON.stringify({ success: true }), {
+          status: 200,
+        }),
+      );
+    }
+  })();
+}

@@ -4,11 +4,12 @@ import {
   DiscordInteractionTypes,
   Interaction,
   SlashCommandInteraction,
+  isSlashCommand
 } from "../../deps.ts";
 
 const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {
   // Slash command was executed
-  if (data.type === DiscordInteractionTypes.ApplicationCommand) {
+  if (isSlashCommand(data)) {
     // Grab name of slash command
     const name = (data as SlashCommandInteraction).data?.name;
 

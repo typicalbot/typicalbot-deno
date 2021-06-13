@@ -1,6 +1,6 @@
 import {
-  DISCORD_TOKEN,
   DISCORD_ID,
+  DISCORD_TOKEN,
   EVENT_HANDLER_PORT,
   EVENT_HANDLER_SECRET_KEY,
 } from "./config.ts";
@@ -9,9 +9,9 @@ import {
   GatewayPayload,
   handlers,
   rest,
-  updateEventHandlers,
+  setApplicationId,
   setBotId,
-  setApplicationId
+  updateEventHandlers,
 } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";

@@ -3,8 +3,8 @@ import {
   DiscordenoMember,
   DiscordInteractionTypes,
   Interaction,
+  isSlashCommand,
   SlashCommandInteraction,
-  isSlashCommand
 } from "../../deps.ts";
 
 const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {

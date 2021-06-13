@@ -1,10 +1,14 @@
-import { EVENT_HANDLER_PORT, EVENT_HANDLER_SECRET_KEY, DISCORD_TOKEN } from "./config.ts";
+import {
+  DISCORD_TOKEN,
+  EVENT_HANDLER_PORT,
+  EVENT_HANDLER_SECRET_KEY,
+} from "./config.ts";
 import {
   camelize,
   GatewayPayload,
   handlers,
+  rest,
   updateEventHandlers,
-  rest
 } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";

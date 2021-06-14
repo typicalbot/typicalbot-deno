@@ -44,4 +44,11 @@ const PurgeCommand: Command = async (message, args) => {
   );
 };
 
+PurgeCommand.options = {
+  permissions: {
+    user: ["MANAGE_MESSAGES"],
+    self: ["MANAGE_MESSAGES"],
+  },
+};
+
 bot.commands.set("purge", PurgeCommand);

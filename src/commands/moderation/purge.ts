@@ -33,7 +33,7 @@ const PurgeCommand: Command = async (message, args) => {
       message.channelId,
       messagesToDelete.slice(0, count + 1).map((m) => m.id),
     );
-  } catch (err) {
+  } catch {
     return message.send(
       "There was an error while attempting to delete messages. Please try again.",
     );

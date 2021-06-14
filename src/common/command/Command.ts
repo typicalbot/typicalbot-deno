@@ -1,6 +1,7 @@
 import {
   ApplicationCommandOption,
   DiscordenoMessage,
+  Permission,
   SlashCommandInteraction,
 } from "../../../deps.ts";
 
@@ -8,7 +9,15 @@ import {
 interface Command<A = any[]> {
   (message: DiscordenoMessage, args: A): Promise<unknown> | unknown;
   slash?: SlashCommand;
+  options?: CommandOptions;
   defaultArguments?: Partial<A>;
+}
+
+interface CommandOptions {
+  permissions?: {
+    user?: Permission[];
+    self?: Permission[];
+  };
 }
 
 interface SlashCommand {
@@ -17,3 +26,5 @@ interface SlashCommand {
 }
 
 export default Command;
+
+export { CommandOptions, SlashCommand };

@@ -1,7 +1,7 @@
 import { botId, DiscordChannelTypes, DiscordenoMessage } from "../../deps.ts";
 import { bot } from "../cache.ts";
 
-const prefix = "$$";
+const prefix = "?";
 
 const MessageCreate = (message: DiscordenoMessage) => {
   // Ignore bots

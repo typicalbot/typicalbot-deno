@@ -27,4 +27,4 @@ interface SlashCommand {
 
 export default Command;
 
-export { CommandOptions, SlashCommand };
+export type { CommandOptions, SlashCommand };

@@ -3,8 +3,8 @@ import Command from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 
 const PurgeCommand: Command = async (message, args) => {
-  if (!args) {
-    return message.send("Invalid usage. Please use `$$purge [2-100].`");
+  if (!args.length) {
+    return message.send("Invalid usage. Please use `?purge [2-100].`");
   }
 
   let count = args.shift();

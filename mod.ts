@@ -12,6 +12,7 @@ import {
   setApplicationId,
   setBotId,
   updateEventHandlers,
+  upsertSlashCommands,
 } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
@@ -31,6 +32,19 @@ rest.token = `Bot ${DISCORD_TOKEN}`;
 // Manually set botId and applicationId as ready event not emitted
 setBotId(DISCORD_ID!);
 setApplicationId(DISCORD_ID!);
+// Manually upsert slash commands as ready event not emitted
+const globalCommands = [];
+
+for (const command of bot.slashCommands.values()) {
+  if (!command.enabled) continue;
+
+  if (command.global) globalCommands.push(command);
+}
+
+if (globalCommands.length) {
+  console.log(`Upserting ${globalCommands.length} slash commands.`);
+  await upsertSlashCommands(globalCommands);
+}
 
 // Start listening on localhost.
 const server = Deno.listen({ port: parseInt(EVENT_HANDLER_PORT!) });

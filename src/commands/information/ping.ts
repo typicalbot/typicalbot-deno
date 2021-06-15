@@ -1,37 +1,28 @@
-import Command from "../../common/command/Command.ts";
+import { SlashCommand } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import {
-  DiscordApplicationCommandOptionTypes,
   DiscordInteractionResponseTypes,
   sendInteractionResponse,
   snowflakeToBigint,
 } from "../../../deps.ts";
 
-const PingCommand: Command = async (message) => {
-  const ping = await message.send(`Pong!`);
-
-  return ping.edit(
-    `Pong! Command Execution: ${ping.timestamp - message.timestamp}ms`,
-  );
-};
-
-PingCommand.slash = async (interaction) => {
-  return await sendInteractionResponse(
-    snowflakeToBigint(interaction.id),
-    interaction.token,
-    {
-      type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
-      data: {
-        content: "Pong",
+const PingCommand: SlashCommand = {
+  enabled: true,
+  global: true,
+  guild: false,
+  advanced: false,
+  async execute(interaction) {
+    return await sendInteractionResponse(
+      snowflakeToBigint(interaction.id),
+      interaction.token,
+      {
+        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+        data: {
+          content: "Pong",
+        },
       },
-    },
-  );
-};
+    );
+  }
+}
 
-PingCommand.slash.options = {
-  name: "ping",
-  description: "Check to see if TypicalBot is responsive.",
-  type: DiscordApplicationCommandOptionTypes.User,
-};
-
-bot.commands.set("ping", PingCommand);
+bot.slashCommands.set("ping", PingCommand);

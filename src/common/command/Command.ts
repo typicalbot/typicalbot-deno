@@ -1,5 +1,6 @@
 import {
   ApplicationCommandOption,
+  DiscordenoMember,
   DiscordenoMessage,
   Permission,
   SlashCommandInteraction,
@@ -8,7 +9,6 @@ import {
 // deno-lint-ignore no-explicit-any
 interface Command<A = any[]> {
   (message: DiscordenoMessage, args: A): Promise<unknown> | unknown;
-  slash?: SlashCommand;
   options?: CommandOptions;
   defaultArguments?: Partial<A>;
 }
@@ -21,8 +21,12 @@ interface CommandOptions {
 }
 
 interface SlashCommand {
-  (interaction: SlashCommandInteraction): Promise<unknown> | unknown;
-  options?: ApplicationCommandOption;
+  enabled?: boolean;
+  guild?: boolean;
+  global?: boolean;
+  advanced?: boolean;
+  options?: ApplicationCommandOption[];
+  execute: (interaction: Omit<SlashCommandInteraction, "member">, member?: DiscordenoMember) => Promise<unknown> | unknown;
 }
 
 export default Command;

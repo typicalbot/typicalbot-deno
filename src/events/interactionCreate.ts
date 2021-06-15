@@ -1,7 +1,7 @@
 import { bot } from "../cache.ts";
 import { DiscordenoMember, Interaction, isSlashCommand } from "../../deps.ts";
 
-const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {
+const InteractionCreate = (data: Interaction, member?: DiscordenoMember) => {
   // Slash command was executed
   if (isSlashCommand(data)) {
     // Grab name of slash command
@@ -10,12 +10,12 @@ const InteractionCreate = (data: Interaction, _member?: DiscordenoMember) => {
     if (!name) return;
 
     // Check to see if command is in cache
-    const command = bot.commands.get(name);
+    const command = bot.slashCommands.get(name);
 
     if (!command) return;
 
     // Run slash execution
-    command.slash?.(data);
+    command.execute(data, member);
   }
 };
 

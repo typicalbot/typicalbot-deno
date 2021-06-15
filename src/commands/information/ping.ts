@@ -22,7 +22,7 @@ const PingCommand: SlashCommand = {
         },
       },
     );
-  }
-}
+  },
+};
 
 bot.slashCommands.set("ping", PingCommand);

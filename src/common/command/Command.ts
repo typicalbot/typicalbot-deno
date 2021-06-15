@@ -26,7 +26,10 @@ interface SlashCommand {
   global?: boolean;
   advanced?: boolean;
   options?: ApplicationCommandOption[];
-  execute: (interaction: Omit<SlashCommandInteraction, "member">, member?: DiscordenoMember) => Promise<unknown> | unknown;
+  execute: (
+    interaction: Omit<SlashCommandInteraction, "member">,
+    member?: DiscordenoMember,
+  ) => Promise<unknown> | unknown;
 }
 
 export default Command;

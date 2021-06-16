@@ -1,51 +1,82 @@
-// import Command from "../../common/command/Command.ts";
-// import { bot } from "../../cache.ts";
+import Command, {
+  basicInteractionResponse,
+} from "../../common/command/Command.ts";
+import { bot } from "../../cache.ts";
+import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 
-// const DiceCommand: Command = (message, args) => {
-//   if (!args.length) {
-//     return message.send(
-//       "Invalid usage. Please use the following usage `?dice XdY` where X is the amount of dices and Y is amount of sides.",
-//     );
-//   }
+const DiceCommand: Command = (interaction) => {
+  const raw = interaction.data?.options?.[0];
 
-//   // syntax: XdY
-//   // X = number of dices
-//   // Y = number of sides per dice
-//   let [dices, sides] = args.shift().split("d");
+  if (!raw) {
+    return basicInteractionResponse(
+      interaction.id,
+      interaction.token,
+      "Invalid usage, use `2d6` as an example. Where `2` is the amount of dices and `6` is amount of sides.",
+    );
+  }
 
-//   // convert to number
-//   dices = +dices;
-//   sides = +sides;
+  if (raw.type === DiscordApplicationCommandOptionTypes.String && raw.value) {
+      const [dices, sides] = raw.value.split('d');
 
-//   if (dices < 2) {
-//     return message.send("There must be at least two dice.");
-//   }
+      if (!dices || !sides) {
+        return basicInteractionResponse(
+            interaction.id,
+            interaction.token,
+            "Invalid usage, use `2d6` as an example. Where `2` is the amount of dices and `6` is amount of sides.",
+          );
+      }
 
-//   if (sides < 2) {
-//     return message.send("There must be at least two sides.");
-//   }
+      const convertedDices = +dices;
+      const convertedSides = +sides;
+      
+      if (convertedDices < 2) {
+        return basicInteractionResponse(
+            interaction.id,
+            interaction.token,
+            "There must be at least two dices.",
+          );
+      }
 
-//   // roll X dices between 1..sides
-//   // return X rolls & sum
-//   // TODO: Simplify?
-//   const rolls = [];
+      if (convertedSides < 2) {
+        return basicInteractionResponse(
+            interaction.id,
+            interaction.token,
+            "There must be at least two sides.",
+          );
+      } 
 
-//   for (let i = 0; i < dices; i++) {
-//     rolls.push(rollDice(sides));
-//   }
+      const rolls = [];
 
-//   const sum = rolls.reduce((a, b) => a + b, 0);
+      const rollDice = (sides: number): number => {
+        sides = Math.max(sides, 1);
+        return Math.floor(Math.random() * (sides - 1 + 1)) + 1;
+      };
 
-//   return message.send(`You rolled: ${rolls.join(", ")}. Total: ${sum}`);
-// };
+      for (let i = 0; i < convertedDices; i++) {
+        rolls.push(rollDice(convertedSides));
+      }
 
-// const rollDice = (sides: number): number => {
-//   sides = Math.max(sides, 1);
-//   return Math.floor(Math.random() * (sides - 1 + 1)) + 1;
-// };
+      const sum = rolls.reduce((a, b) => a + b, 0);
 
-// DiceCommand.defaultArguments = [
-//   "2d6",
-// ];
+      return basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        `You rolled [${rolls.join(', ')}] totaling ${sum}.`,
+      );
+  }
+};
 
-// bot.commands.set("dice", DiceCommand);
+DiceCommand.options = {
+  name: "dice",
+  description: "No description available.",
+  options: [
+    {
+      required: false,
+      name: "XdY",
+      description: "The amount of dices (X) and amount of sides (Y)",
+      type: DiscordApplicationCommandOptionTypes.String,
+    },
+  ],
+};
+
+bot.commands.set("dice", DiceCommand);

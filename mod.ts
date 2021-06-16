@@ -36,7 +36,7 @@ setApplicationId(DISCORD_ID!);
 const globalCommands = [];
 
 for (const command of bot.commands.values()) {
-  globalCommands.push(command);
+  globalCommands.push(command.options);
 }
 
 if (globalCommands.length) {

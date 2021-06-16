@@ -1,29 +1,30 @@
-import Command from "../../common/command/Command.ts";
+import Command, {
+  basicInteractionResponse,
+} from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import {
-  DiscordInteractionResponseTypes,
-  sendInteractionResponse,
-  snowflakeToBigint,
-} from "../../../deps.ts";
 
-const AdviceCommand: Command = {
-  name: "advice",
-  description: "No description available",
-  async execute(interaction) {
-    const json = await fetch("https://api.adviceslip.com/advice")
-      .then((res) => res.json());
-
-    return await sendInteractionResponse(
-      snowflakeToBigint(interaction.id),
-      interaction.token,
-      {
-        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
-        data: {
-          content: json.slip.advice,
-        },
-      },
+const AdviceCommand: Command = (interaction) => {
+  return fetch("https://api.adviceslip.com/advice")
+    .then((res) => res.json())
+    .then((json) =>
+      basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        json.slip.advice,
+      )
+    )
+    .catch(() =>
+      basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "Failed to query from API.",
+      )
     );
-  },
+};
+
+AdviceCommand.options = {
+  name: "advice",
+  description: "No description available.",
 };
 
 bot.commands.set("advice", AdviceCommand);

@@ -15,7 +15,7 @@ const InteractionCreate = (data: Interaction, member?: DiscordenoMember) => {
     if (!command) return;
 
     // Run slash execution
-    command.execute(data, member);
+    command(data, member);
   }
 };
 

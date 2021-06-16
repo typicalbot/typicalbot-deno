@@ -1,29 +1,30 @@
-import Command from "../../common/command/Command.ts";
+import Command, {
+  basicInteractionResponse,
+} from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import {
-  DiscordInteractionResponseTypes,
-  sendInteractionResponse,
-  snowflakeToBigint,
-} from "../../../deps.ts";
 
-const ChuckNorrisCommand: Command = {
-  name: "chucknorris",
-  description: "No description available",
-  async execute(interaction) {
-    const json = await fetch("https://api.icndb.com/jokes/random")
-      .then((res) => res.json());
-
-    return await sendInteractionResponse(
-      snowflakeToBigint(interaction.id),
-      interaction.token,
-      {
-        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
-        data: {
-          content: json.value.joke,
-        },
-      },
+const ChuckNorrisCommand: Command = (interaction) => {
+  return fetch("https://api.icndb.com/jokes/random")
+    .then((res) => res.json())
+    .then((json) =>
+      basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        json.value.joke,
+      )
+    )
+    .catch(() =>
+      basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "Failed to query from API.",
+      )
     );
-  },
+};
+
+ChuckNorrisCommand.options = {
+  name: "chucknorris",
+  description: "No description available.",
 };
 
 bot.commands.set("chucknorris", ChuckNorrisCommand);

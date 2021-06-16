@@ -1,31 +1,28 @@
-import Command from "../../common/command/Command.ts";
+import Command, {
+  basicInteractionResponse,
+} from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import {
-  DiscordInteractionResponseTypes,
-  sendInteractionResponse,
-  snowflakeToBigint,
-} from "../../../deps.ts";
 
-const ThouartCommand: Command = {
-  name: "thouart",
-  description: "No description available",
-  async execute(interaction) {
-    const json = await fetch("https://quandyfactory.com/insult/json", {
-      headers: { "Accept": "application/json" },
-    })
-      .then((res) => res.json());
-
-    return await sendInteractionResponse(
-      snowflakeToBigint(interaction.id),
-      interaction.token,
-      {
-        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
-        data: {
-          content: json.insult,
-        },
-      },
+const ThouartCommand: Command = (interaction) => {
+  return fetch("https://quandyfactory.com/insult/json", {
+    headers: { "Accept": "application/json" },
+  })
+    .then((res) => res.json())
+    .then((json) =>
+      basicInteractionResponse(interaction.id, interaction.token, json.insult)
+    )
+    .catch(() =>
+      basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "Failed to query from API.",
+      )
     );
-  },
+};
+
+ThouartCommand.options = {
+  name: "thouart",
+  description: "No description available.",
 };
 
 bot.commands.set("thouart", ThouartCommand);

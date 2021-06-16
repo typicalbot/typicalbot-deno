@@ -1,12 +1,21 @@
-// import Command from "../../common/command/Command.ts";
-// import { bot } from "../../cache.ts";
+import Command, {
+  basicInteractionResponse,
+} from "../../common/command/Command.ts";
+import { bot } from "../../cache.ts";
 
-// const CoinflipCommand: Command = (message) => {
-//   const randomNumber = Math.floor(Math.random() * 2);
+const CoinflipCommand: Command = (interaction) => {
+  const rand = Math.floor(Math.random() * 2);
 
-//   // 1 heads
-//   // 2 tails
-//   return message.send(randomNumber === 1 ? "Heads" : "Tails");
-// };
+  return basicInteractionResponse(
+    interaction.id,
+    interaction.token,
+    rand === 1 ? "Heads" : "Tails",
+  );
+};
 
-// bot.commands.set("coinflip", CoinflipCommand);
+CoinflipCommand.options = {
+  name: "coinflip",
+  description: "No description available.",
+};
+
+bot.commands.set("coinflip", CoinflipCommand);

@@ -1,4 +1,4 @@
-import { SlashCommand } from "../../common/command/Command.ts";
+import Command from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import {
   DiscordInteractionResponseTypes,
@@ -6,11 +6,9 @@ import {
   snowflakeToBigint,
 } from "../../../deps.ts";
 
-const PingCommand: SlashCommand = {
-  enabled: true,
-  global: true,
-  guild: false,
-  advanced: false,
+const PingCommand: Command = {
+  name: "ping",
+  description: "Check to see if TypicalBot is online and responsive.",
   async execute(interaction) {
     return await sendInteractionResponse(
       snowflakeToBigint(interaction.id),
@@ -25,4 +23,4 @@ const PingCommand: SlashCommand = {
   },
 };
 
-bot.slashCommands.set("ping", PingCommand);
+bot.commands.set("ping", PingCommand);

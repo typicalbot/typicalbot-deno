@@ -10,7 +10,7 @@ const InteractionCreate = (data: Interaction, member?: DiscordenoMember) => {
     if (!name) return;
 
     // Check to see if command is in cache
-    const command = bot.slashCommands.get(name);
+    const command = bot.commands.get(name);
 
     if (!command) return;
 

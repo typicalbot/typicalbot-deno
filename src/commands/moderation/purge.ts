@@ -1,54 +1,54 @@
-import { deleteMessages, getMessages } from "../../../deps.ts";
-import Command from "../../common/command/Command.ts";
-import { bot } from "../../cache.ts";
+// import { deleteMessages, getMessages } from "../../../deps.ts";
+// import Command from "../../common/command/Command.ts";
+// import { bot } from "../../cache.ts";
 
-const PurgeCommand: Command = async (message, args) => {
-  if (!args.length) {
-    return message.send("Invalid usage. Please use `?purge [2-100].`");
-  }
+// const PurgeCommand: Command = async (message, args) => {
+//   if (!args.length) {
+//     return message.send("Invalid usage. Please use `?purge [2-100].`");
+//   }
 
-  let count = args.shift();
+//   let count = args.shift();
 
-  // convert to number
-  count = +count;
+//   // convert to number
+//   count = +count;
 
-  if (count < 2) {
-    return message.send("You must purge at least 2 messages.");
-  }
+//   if (count < 2) {
+//     return message.send("You must purge at least 2 messages.");
+//   }
 
-  if (count > 100) {
-    return message.send("You cannot purge more than 100 messages.");
-  }
+//   if (count > 100) {
+//     return message.send("You cannot purge more than 100 messages.");
+//   }
 
-  const messagesToDelete = await getMessages(message.channelId, {
-    limit: 100,
-  });
+//   const messagesToDelete = await getMessages(message.channelId, {
+//     limit: 100,
+//   });
 
-  if (!messagesToDelete) {
-    return message.send("There are no messages to delete.");
-  }
+//   if (!messagesToDelete) {
+//     return message.send("There are no messages to delete.");
+//   }
 
-  try {
-    await deleteMessages(
-      message.channelId,
-      messagesToDelete.slice(0, count + 1).map((m) => m.id),
-    );
-  } catch {
-    return message.send(
-      "There was an error while attempting to delete messages. Please try again.",
-    );
-  }
+//   try {
+//     await deleteMessages(
+//       message.channelId,
+//       messagesToDelete.slice(0, count + 1).map((m) => m.id),
+//     );
+//   } catch {
+//     return message.send(
+//       "There was an error while attempting to delete messages. Please try again.",
+//     );
+//   }
 
-  return message.send(
-    `Successfully purged ${count} messages.`,
-  );
-};
+//   return message.send(
+//     `Successfully purged ${count} messages.`,
+//   );
+// };
 
-PurgeCommand.options = {
-  permissions: {
-    user: ["MANAGE_MESSAGES"],
-    self: ["MANAGE_MESSAGES"],
-  },
-};
+// PurgeCommand.options = {
+//   permissions: {
+//     user: ["MANAGE_MESSAGES"],
+//     self: ["MANAGE_MESSAGES"],
+//   },
+// };
 
-bot.commands.set("purge", PurgeCommand);
+// bot.commands.set("purge", PurgeCommand);

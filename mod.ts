@@ -35,10 +35,8 @@ setApplicationId(DISCORD_ID!);
 // Manually upsert slash commands as ready event not emitted
 const globalCommands = [];
 
-for (const command of bot.slashCommands.values()) {
-  if (!command.enabled) continue;
-
-  if (command.global) globalCommands.push(command);
+for (const command of bot.commands.values()) {
+  globalCommands.push(command);
 }
 
 if (globalCommands.length) {

@@ -1,22 +1,36 @@
 import Command from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import {
+  DiscordInteractionResponseTypes,
+  sendInteractionResponse,
+  snowflakeToBigint,
+} from "../../../deps.ts";
 
-const MemeCommand: Command = async (message) => {
-  const { data: { children } } = await fetch(
-    "https://www.reddit.com/r/memes/top.json?sort=top&t=day&limit=500",
-  )
-    .then((res) => res.json());
+const MemeCommand: Command = {
+  name: "meme",
+  description: "No description available",
+  async execute(interaction) {
+    const { data: { children } } = await fetch(
+      "https://www.reddit.com/r/memes/top.json?sort=top&t=day&limit=500",
+    )
+      .then((res) => res.json());
 
-  // deno-lint-ignore no-explicit-any
-  const raw = children.filter((c: any) => c.data.over_18 === false);
+    // deno-lint-ignore no-explicit-any
+    const raw = children.filter((c: any) => c.data.over_18 === false);
 
-  if (raw.length === 0) {
-    return message.send("Unable to query from API.");
-  }
+    const meme = raw[Math.floor(Math.random() * raw.length)].data;
 
-  const meme = raw[Math.floor(Math.random() * raw.length)].data;
-
-  message.send([meme.title, meme.url].join("\n"));
+    return await sendInteractionResponse(
+      snowflakeToBigint(interaction.id),
+      interaction.token,
+      {
+        type: DiscordInteractionResponseTypes.ChannelMessageWithSource,
+        data: {
+          content: [meme.title, meme.url].join("\n"),
+        },
+      },
+    );
+  },
 };
 
 bot.commands.set("meme", MemeCommand);

@@ -6,7 +6,7 @@ import { cache, DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 
 const DebugCommand: Command = (interaction) => {
   // TODO: Change to use application team owners
-  if (interaction.member!.user!.id !== '187342661060001792') {
+  if (interaction.member!.user!.id !== "187342661060001792") {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,

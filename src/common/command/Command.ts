@@ -1,6 +1,5 @@
 import {
   ApplicationCommandOption,
-  DiscordenoMember,
   DiscordInteractionResponseTypes,
   Embed,
   sendInteractionResponse,
@@ -9,8 +8,7 @@ import {
 
 interface Command {
   (
-    interaction: Omit<SlashCommandInteraction, "member">,
-    member?: DiscordenoMember,
+    interaction: SlashCommandInteraction,
   ): Promise<unknown> | unknown;
   options: CommandOptions;
 }

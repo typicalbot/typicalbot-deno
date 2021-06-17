@@ -1,7 +1,7 @@
 import { bot } from "../cache.ts";
-import { DiscordenoMember, Interaction, isSlashCommand } from "../../deps.ts";
+import { Interaction, isSlashCommand } from "../../deps.ts";
 
-const InteractionCreate = (data: Interaction, member?: DiscordenoMember) => {
+const InteractionCreate = (data: Interaction) => {
   // Slash command was executed
   if (isSlashCommand(data)) {
     // Grab name of slash command
@@ -15,7 +15,7 @@ const InteractionCreate = (data: Interaction, member?: DiscordenoMember) => {
     if (!command) return;
 
     // Run slash execution
-    command(data, member);
+    command(data);
   }
 };
 

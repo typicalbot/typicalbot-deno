@@ -4,9 +4,9 @@ import Command, {
 import { bot } from "../../cache.ts";
 import { cache, DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 
-const DebugCommand: Command = (interaction, member) => {
+const DebugCommand: Command = (interaction) => {
   // TODO: Change to use application team owners
-  if (member!.id !== 187342661060001792n) {
+  if (interaction.user!.id !== '187342661060001792') {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,

@@ -1,54 +1,104 @@
-// import { deleteMessages, getMessages } from "../../../deps.ts";
-// import Command from "../../common/command/Command.ts";
-// import { bot } from "../../cache.ts";
+import {
+  deleteMessages,
+  DiscordApplicationCommandOptionTypes,
+  getMessages,
+  snowflakeToBigint,
+  validatePermissions,
+} from "../../../deps.ts";
+import Command, {
+  basicInteractionResponse,
+} from "../../common/command/Command.ts";
+import { bot } from "../../cache.ts";
 
-// const PurgeCommand: Command = async (message, args) => {
-//   if (!args.length) {
-//     return message.send("Invalid usage. Please use `?purge [2-100].`");
-//   }
+const PurgeCommand: Command = async (interaction) => {
+  if (
+    !validatePermissions(snowflakeToBigint(interaction.member!.permissions), [
+      "MANAGE_MESSAGES",
+    ])
+  ) {
+    return basicInteractionResponse(
+      interaction.id,
+      interaction.token,
+      "You are missing the Manage Messages permission.",
+    );
+  }
 
-//   let count = args.shift();
+  const raw = interaction.data?.options?.[0];
 
-//   // convert to number
-//   count = +count;
+  if (!raw) {
+    return basicInteractionResponse(
+      interaction.id,
+      interaction.token,
+      "Invalid usage, please use `/purge [2-100]`.",
+    );
+  }
 
-//   if (count < 2) {
-//     return message.send("You must purge at least 2 messages.");
-//   }
+  if (raw.type === DiscordApplicationCommandOptionTypes.Integer && raw.value) {
+    if (raw.value < 2) {
+      return basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "You must purge at least 2 messages.",
+      );
+    }
 
-//   if (count > 100) {
-//     return message.send("You cannot purge more than 100 messages.");
-//   }
+    if (raw.value > 100) {
+      return basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "You cannot purge more than 100 messages.",
+      );
+    }
 
-//   const messagesToDelete = await getMessages(message.channelId, {
-//     limit: 100,
-//   });
+    const channelId: bigint = snowflakeToBigint(interaction.channelId!);
 
-//   if (!messagesToDelete) {
-//     return message.send("There are no messages to delete.");
-//   }
+    const messagesToDelete = await getMessages(
+      channelId,
+      {
+        limit: 100,
+      },
+    );
 
-//   try {
-//     await deleteMessages(
-//       message.channelId,
-//       messagesToDelete.slice(0, count + 1).map((m) => m.id),
-//     );
-//   } catch {
-//     return message.send(
-//       "There was an error while attempting to delete messages. Please try again.",
-//     );
-//   }
+    if (!messagesToDelete) {
+      return basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "There are no messages to delete.",
+      );
+    }
 
-//   return message.send(
-//     `Successfully purged ${count} messages.`,
-//   );
-// };
+    try {
+      await deleteMessages(
+        channelId,
+        messagesToDelete.slice(0, raw.value + 1).map((m) => m.id),
+      );
+    } catch {
+      return basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        "TypicalBot is missing the Manage Messages permission.",
+      );
+    }
 
-// PurgeCommand.options = {
-//   permissions: {
-//     user: ["MANAGE_MESSAGES"],
-//     self: ["MANAGE_MESSAGES"],
-//   },
-// };
+    return basicInteractionResponse(
+      interaction.id,
+      interaction.token,
+      `Successfully purged ${raw.value} messages.`,
+    );
+  }
+};
 
-// bot.commands.set("purge", PurgeCommand);
+PurgeCommand.options = {
+  name: "purge",
+  description: "No description available.",
+  options: [
+    {
+      required: false,
+      name: "amount",
+      description: "No description available.",
+      type: DiscordApplicationCommandOptionTypes.Integer,
+    },
+  ],
+};
+
+bot.commands.set("purge", PurgeCommand);

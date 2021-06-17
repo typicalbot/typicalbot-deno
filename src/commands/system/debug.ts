@@ -6,15 +6,13 @@ import { cache, DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 
 const DebugCommand: Command = (interaction) => {
   // TODO: Change to use application team owners
-  /* user!.id is not defined and causing the proxy to crash
-  if (interaction.user!.id !== '187342661060001792') {
+  if (interaction.member!.user!.id !== '187342661060001792') {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
       "You do not have permission to use this command.",
     );
   }
-  */
 
   const raw = interaction.data?.options?.[0];
 

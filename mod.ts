@@ -16,6 +16,7 @@ import {
 } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
+import { loadLanguages } from "./src/utils/i18next.ts";
 
 await Promise.all([
   "./src/commands",
@@ -23,6 +24,7 @@ await Promise.all([
 ].map((path) => importDirectory(Deno.realPathSync(path))));
 
 await fileLoader();
+await loadLanguages();
 
 // Setup event handlers internally so when events come in below it uses our events
 updateEventHandlers(bot.events);

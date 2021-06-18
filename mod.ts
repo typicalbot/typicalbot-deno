@@ -16,7 +16,7 @@ import {
 } from "./deps.ts";
 import { bot } from "./src/cache.ts";
 import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
-import { loadLanguages } from "./src/utils/i18next.ts";
+import { loadLanguages } from "./src/common/util/i18next.ts";
 
 await Promise.all([
   "./src/commands",

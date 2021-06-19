@@ -23,4 +23,4 @@ YearFactCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set("yearfact", YearFactCommand);
+bot.commands.add(YearFactCommand);

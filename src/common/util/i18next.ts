@@ -20,8 +20,8 @@
 
 import i18next from "https://deno.land/x/i18next@v20.2.2/index.js";
 import Backend from "https://deno.land/x/i18next_fs_backend@v1.1.1/index.js";
-import { cache } from "../../deps.ts";
-import { bot } from "../cache.ts";
+import { cache } from "../../../deps.ts";
+import { bot } from "../../cache.ts";
 
 /** This function helps translate the string to the specific guilds needs. */
 export function translate(guildId: bigint, key: string, options?: unknown) {

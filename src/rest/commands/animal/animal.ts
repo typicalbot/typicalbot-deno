@@ -3,6 +3,7 @@ import Command, {
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import { DiscordApplicationCommandOptionTypes } from "../../../../deps.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const AnimalCommand: Command = (interaction) => {
   const raw = interaction.data?.options?.[0];
@@ -150,66 +151,86 @@ const AnimalCommand: Command = (interaction) => {
 
 AnimalCommand.options = {
   name: "animal",
-  description: "No description available.",
+  description: enTranslate("commands/animal/animal:COMMAND_DESCRIPTION"),
   options: [
     {
       required: false,
       name: "bird",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_BIRD",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "cat",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_CAT",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "dog",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_DOG",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "fox",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_FOX",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "kangaroo",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_KANGAROO",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "koala",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_KOALA",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "panda",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_PANDA",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "raccoon",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_RACCOON",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "red-panda",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_RED_PANDA",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "whale",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/animal/animal:SUBCOMMAND_DESCRIPTION_WHALE",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
   ],

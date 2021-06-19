@@ -37,4 +37,4 @@ SayCommand.options = {
   ],
 };
 
-bot.commands.set(SayCommand.options.name, SayCommand);
+bot.commands.add(SayCommand);

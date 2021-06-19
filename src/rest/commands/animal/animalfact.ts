@@ -215,4 +215,4 @@ AnimalFactCommand.options = {
   ],
 };
 
-bot.commands.set(AnimalFactCommand.options.name, AnimalFactCommand);
+bot.commands.add(AnimalFactCommand);

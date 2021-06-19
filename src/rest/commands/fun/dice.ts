@@ -79,4 +79,4 @@ DiceCommand.options = {
   ],
 };
 
-bot.commands.set(DiceCommand.options.name, DiceCommand);
+bot.commands.add(DiceCommand);

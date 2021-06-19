@@ -109,4 +109,4 @@ KickCommand.options = {
   ],
 };
 
-bot.commands.set(KickCommand.options.name, KickCommand);
+bot.commands.add(KickCommand);

@@ -16,4 +16,4 @@ DocsCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set(DocsCommand.options.name, DocsCommand);
+bot.commands.add(DocsCommand);

@@ -27,4 +27,4 @@ ChuckNorrisCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set(ChuckNorrisCommand.options.name, ChuckNorrisCommand);
+bot.commands.add(ChuckNorrisCommand);

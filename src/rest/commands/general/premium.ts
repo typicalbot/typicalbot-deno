@@ -16,4 +16,4 @@ PremiumCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set(PremiumCommand.options.name, PremiumCommand);
+bot.commands.add(PremiumCommand);

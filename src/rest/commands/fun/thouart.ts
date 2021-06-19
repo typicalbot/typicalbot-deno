@@ -25,4 +25,4 @@ ThouartCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set(ThouartCommand.options.name, ThouartCommand);
+bot.commands.add(ThouartCommand);

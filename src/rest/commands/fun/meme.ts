@@ -34,4 +34,4 @@ MemeCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set(MemeCommand.options.name, MemeCommand);
+bot.commands.add(MemeCommand);

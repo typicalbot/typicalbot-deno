@@ -1,7 +1,7 @@
 import { bot } from "../../../cache.ts";
 import { INTERNAL_API } from "../../../../config.ts";
 
-type GuildLanguage = "en-US";
+type GuildLanguage = "en_US";
 
 type GuildTimezone = "UTC";
 

@@ -2,5 +2,6 @@
 /LICENSE                @tjrgg
 /README.md              @nsylke @tjrgg
 /.github                @tjrgg
-/.github/SECURITY.md    @nsylke @tjrgg
+/.github/CONTRIBUTING.md @nsylke @tjrgg
+/.github/SECURITY.md     @nsylke @tjrgg
 /src                    @typicalbot/bot

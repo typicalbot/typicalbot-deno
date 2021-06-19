@@ -4,7 +4,7 @@ import {
   Embed,
   sendInteractionResponse,
   SlashCommandInteraction,
-} from "../../../deps.ts";
+} from "../../../../deps.ts";
 
 interface Command {
   (

@@ -3,17 +3,17 @@ import Command, {
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import {
+  banMember,
   DiscordApplicationCommandOptionTypes,
-  kickMember,
   snowflakeToBigint,
   validatePermissions,
-} from "../../../deps.ts";
+} from "../../../../deps.ts";
 import { translate } from "../../common/util/i18next.ts";
 
-const KickCommand: Command = async (interaction) => {
+const BanCommand: Command = async (interaction) => {
   if (
     !validatePermissions(snowflakeToBigint(interaction.member!.permissions), [
-      "KICK_MEMBERS",
+      "BAN_MEMBERS",
     ])
   ) {
     return basicInteractionResponse(
@@ -22,7 +22,7 @@ const KickCommand: Command = async (interaction) => {
       translate(
         snowflakeToBigint(interaction.guildId!),
         "permission:USER_MISSING_PERMISSION",
-        { permission: "Kick Members" },
+        { permission: "Ban Members" },
       ),
     );
   }
@@ -63,10 +63,13 @@ const KickCommand: Command = async (interaction) => {
     // TODO: Check role hierarchy
 
     try {
-      await kickMember(
+      await banMember(
         snowflakeToBigint(interaction.guildId!),
         snowflakeToBigint(targetUser.id),
-        reason,
+        {
+          deleteMessageDays: 0,
+          reason: reason,
+        },
       );
     } catch {
       return basicInteractionResponse(
@@ -75,7 +78,7 @@ const KickCommand: Command = async (interaction) => {
         translate(
           snowflakeToBigint(interaction.guildId!),
           "permission:SELF_MISSING_PERMISSION",
-          { permission: "Kick Members" },
+          { permission: "Ban Members" },
         ),
       );
     }
@@ -83,15 +86,15 @@ const KickCommand: Command = async (interaction) => {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
-      `Successfully kicked ${targetUser.username}#${targetUser.discriminator} (${targetUser.id}) ${
+      `Successfully banned ${targetUser.username}#${targetUser.discriminator} (${targetUser.id}) ${
         rawReason ? `for ${reason}` : ""
       }`,
     );
   }
 };
 
-KickCommand.options = {
-  name: "kick",
+BanCommand.options = {
+  name: "ban",
   description: "No description available",
   options: [
     {
@@ -109,4 +112,4 @@ KickCommand.options = {
   ],
 };
 
-bot.commands.set("kick", KickCommand);
+bot.commands.set("ban", BanCommand);

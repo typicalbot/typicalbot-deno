@@ -1,4 +1,4 @@
-import { Collection, EventHandlers } from "../deps.ts";
+import { Collection, EventHandlers } from "../../deps.ts";
 import Command from "./common/command/Command.ts";
 import type { GuildSettings } from "./common/service/internal-api/guild_settings.ts";
 

@@ -2,7 +2,10 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import { cache, DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
+import {
+  cache,
+  DiscordApplicationCommandOptionTypes,
+} from "../../../../deps.ts";
 
 const DebugCommand: Command = (interaction) => {
   // TODO: Change to use application team owners

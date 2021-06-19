@@ -4,7 +4,7 @@ import {
   getMessages,
   snowflakeToBigint,
   validatePermissions,
-} from "../../../deps.ts";
+} from "../../../../deps.ts";
 import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";

@@ -21,7 +21,7 @@ const BanCommand: Command = async (interaction) => {
       interaction.token,
       translate(
         snowflakeToBigint(interaction.guildId!),
-        "permission/USER_MISSING_PERMISSION",
+        "permission:USER_MISSING_PERMISSION",
         { permission: "Ban Members" },
       ),
     );

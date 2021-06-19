@@ -21,7 +21,7 @@ const KickCommand: Command = async (interaction) => {
       interaction.token,
       translate(
         snowflakeToBigint(interaction.guildId!),
-        "permission/USER_MISSING_PERMISSION",
+        "permission:USER_MISSING_PERMISSION",
         { permission: "Kick Members" },
       ),
     );
@@ -74,7 +74,7 @@ const KickCommand: Command = async (interaction) => {
         interaction.token,
         translate(
           snowflakeToBigint(interaction.guildId!),
-          "permission/SELF_MISSING_PERMISSION",
+          "permission:SELF_MISSING_PERMISSION",
           { permission: "Kick Members" },
         ),
       );

@@ -6,6 +6,7 @@ import {
   cache,
   DiscordApplicationCommandOptionTypes,
 } from "../../../../deps.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const DebugCommand: Command = (interaction) => {
   // TODO: Change to use application team owners
@@ -83,18 +84,22 @@ const DebugCommand: Command = (interaction) => {
 
 DebugCommand.options = {
   name: "debug",
-  description: "No description available.",
+  description: enTranslate("commands/system/debug:COMMAND_DESCRIPTION"),
   options: [
     {
       required: false,
       name: "cache",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/system/debug:SUBCOMMAND_DESCRIPTION_CACHE",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
     {
       required: false,
       name: "profiler",
-      description: "No Description available.",
+      description: enTranslate(
+        "commands/system/debug:SUBCOMMAND_DESCRIPTION_PROFILER",
+      ),
       type: DiscordApplicationCommandOptionTypes.SubCommand,
     },
   ],

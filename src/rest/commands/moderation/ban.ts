@@ -112,4 +112,4 @@ BanCommand.options = {
   ],
 };
 
-bot.commands.set("ban", BanCommand);
+bot.commands.set(BanCommand.options.name, BanCommand);

@@ -110,4 +110,4 @@ PurgeCommand.options = {
   ],
 };
 
-bot.commands.set("purge", PurgeCommand);
+bot.commands.set(PurgeCommand.options.name, PurgeCommand);

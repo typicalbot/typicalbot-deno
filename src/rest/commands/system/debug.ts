@@ -100,4 +100,4 @@ DebugCommand.options = {
   ],
 };
 
-bot.commands.set("debug", DebugCommand);
+bot.commands.set(DebugCommand.options.name, DebugCommand);

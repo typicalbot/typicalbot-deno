@@ -16,4 +16,4 @@ InviteCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set("invite", InviteCommand);
+bot.commands.set(InviteCommand.options.name, InviteCommand);

@@ -13,6 +13,7 @@ the database).
 
 ## License
 
-TypicalBot is open source software licensed under the [Apache License, Version 2.0](LICENSE).
-TypicalBot uses modifications of software developed by [Discordeno](https://github.com/discordeno)
-in compliance with its license, a copy of which is available with the source of this software.
+TypicalBot is open source software licensed under the
+[Apache License, Version 2.0](LICENSE). TypicalBot uses modifications of
+software developed by [Discordeno](https://github.com/discordeno) in compliance
+with its license, a copy of which is available with the source of this software.

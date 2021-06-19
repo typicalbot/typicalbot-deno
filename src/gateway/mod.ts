@@ -12,8 +12,10 @@ export function startup() {
   startGateway({
     token: DISCORD_TOKEN!,
     intents: [
-      "GuildMessages",
       "Guilds",
+      "GuildBans",
+      "GuildMessages",
+      "GuildMessageReactions",
     ],
     firstShardId: 0,
     url: EVENT_HANDLER_URL!,

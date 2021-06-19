@@ -18,13 +18,16 @@ import { bot } from "./cache.ts";
 import { fileLoader, importDirectory } from "./common/util/loader.ts";
 import { loadLanguages } from "./common/util/i18next.ts";
 
+// Ensure to load languages before registering commands
+await loadLanguages();
+
+// Load commands and events
 await Promise.all([
   "./src/rest/commands",
   "./src/rest/events",
 ].map((path) => importDirectory(Deno.realPathSync(path))));
 
 await fileLoader();
-await loadLanguages();
 
 // Setup event handlers internally so when events come in below it uses our events
 updateEventHandlers(bot.events);

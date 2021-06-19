@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const PremiumCommand: Command = (interaction) => {
   return basicInteractionResponse(
@@ -13,7 +14,7 @@ const PremiumCommand: Command = (interaction) => {
 
 PremiumCommand.options = {
   name: "premium",
-  description: "No description available.",
+  description: enTranslate("commands/general/premium:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("premium", PremiumCommand);

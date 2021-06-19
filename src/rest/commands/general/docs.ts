@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const DocsCommand: Command = (interaction) => {
   return basicInteractionResponse(
@@ -13,7 +14,7 @@ const DocsCommand: Command = (interaction) => {
 
 DocsCommand.options = {
   name: "docs",
-  description: "No description available.",
+  description: enTranslate("commands/general/docs:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("docs", DocsCommand);

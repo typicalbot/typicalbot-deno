@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const InviteCommand: Command = (interaction) => {
   return basicInteractionResponse(
@@ -13,7 +14,7 @@ const InviteCommand: Command = (interaction) => {
 
 InviteCommand.options = {
   name: "invite",
-  description: "No description available.",
+  description: enTranslate("commands/general/invite:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("invite", InviteCommand);

@@ -36,6 +36,13 @@ export function translate(guildId: bigint, key: string, options?: unknown) {
   return languageMap(key, options);
 }
 
+/** This functions helps translate the string to en_US */
+export function enTranslate(key: string, options?: unknown) {
+  const languageMap = i18next.getFixedT("en_US", undefined);
+
+  return languageMap(key, options);
+}
+
 export async function determineNamespaces(
   path: string,
   namespaces: string[] = [],

@@ -8,6 +8,7 @@ import {
   snowflakeToBigint,
   validatePermissions,
 } from "../../../deps.ts";
+import { translate } from "../../common/util/i18next.ts";
 
 const KickCommand: Command = async (interaction) => {
   if (
@@ -18,7 +19,11 @@ const KickCommand: Command = async (interaction) => {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
-      "You are missing the Kick Members permission.",
+      translate(
+        snowflakeToBigint(interaction.guildId!),
+        "permission/USER_MISSING_PERMISSION",
+        { permission: "Kick Members" },
+      ),
     );
   }
 
@@ -67,7 +72,11 @@ const KickCommand: Command = async (interaction) => {
       return basicInteractionResponse(
         interaction.id,
         interaction.token,
-        "TypicalBot is missing the Kick Members permission.",
+        translate(
+          snowflakeToBigint(interaction.guildId!),
+          "permission/SELF_MISSING_PERMISSION",
+          { permission: "Kick Members" },
+        ),
       );
     }
 

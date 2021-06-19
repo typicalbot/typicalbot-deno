@@ -9,6 +9,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { translate } from "../../common/util/i18next.ts";
 
 const PurgeCommand: Command = async (interaction) => {
   if (
@@ -19,7 +20,11 @@ const PurgeCommand: Command = async (interaction) => {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
-      "You are missing the Manage Messages permission.",
+      translate(
+        snowflakeToBigint(interaction.guildId!),
+        "permission/USER_MISSING_PERMISSION",
+        { permission: "Manage Messages" },
+      ),
     );
   }
 
@@ -76,7 +81,11 @@ const PurgeCommand: Command = async (interaction) => {
       return basicInteractionResponse(
         interaction.id,
         interaction.token,
-        "TypicalBot is missing the Manage Messages permission.",
+        translate(
+          snowflakeToBigint(interaction.guildId!),
+          "permission/SELF_MISSING_PERMISSION",
+          { permission: "Manage Messages" },
+        ),
       );
     }
 

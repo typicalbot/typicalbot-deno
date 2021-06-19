@@ -1,0 +1,4 @@
+{
+  "USER_MISSING_PERMISSION": "You are missing the {{permission}} permission.",
+  "SELF_MISSING_PERMISSION": "TypicalBot is missing the {{permission}} permission."
+}

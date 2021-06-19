@@ -8,6 +8,7 @@ import {
   snowflakeToBigint,
   validatePermissions,
 } from "../../../deps.ts";
+import { translate } from "../../common/util/i18next.ts";
 
 const BanCommand: Command = async (interaction) => {
   if (
@@ -18,7 +19,11 @@ const BanCommand: Command = async (interaction) => {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
-      "You are missing the Ban Members permission.",
+      translate(
+        snowflakeToBigint(interaction.guildId!),
+        "permission/USER_MISSING_PERMISSION",
+        { permission: "Ban Members" },
+      ),
     );
   }
 
@@ -70,7 +75,11 @@ const BanCommand: Command = async (interaction) => {
       return basicInteractionResponse(
         interaction.id,
         interaction.token,
-        "TypicalBot is missing the Ban Members permission.",
+        translate(
+          snowflakeToBigint(interaction.guildId!),
+          "permission:SELF_MISSING_PERMISSION",
+          { permission: "Ban Members" },
+        ),
       );
     }
 

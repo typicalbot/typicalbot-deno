@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const AdviceCommand: Command = (interaction) => {
   return fetch("https://api.adviceslip.com/advice")
@@ -24,7 +25,7 @@ const AdviceCommand: Command = (interaction) => {
 
 AdviceCommand.options = {
   name: "advice",
-  description: "No description available.",
+  description: enTranslate("commands/fun/advice:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("advice", AdviceCommand);

@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const PunCommand: Command = (interaction) => {
   return fetch("https://icanhazdadjoke.com", {
@@ -22,7 +23,7 @@ const PunCommand: Command = (interaction) => {
 
 PunCommand.options = {
   name: "pun",
-  description: "No description available.",
+  description: enTranslate("commands/fun/pun:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("pun", PunCommand);

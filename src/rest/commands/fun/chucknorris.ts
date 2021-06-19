@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const ChuckNorrisCommand: Command = (interaction) => {
   return fetch("https://api.icndb.com/jokes/random")
@@ -24,7 +25,7 @@ const ChuckNorrisCommand: Command = (interaction) => {
 
 ChuckNorrisCommand.options = {
   name: "chucknorris",
-  description: "No description available.",
+  description: enTranslate("commands/fun/chucknorris:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("chucknorris", ChuckNorrisCommand);

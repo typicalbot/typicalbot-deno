@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const YomamaCommand: Command = (interaction) => {
   return fetch("https://api.yomomma.info")
@@ -20,7 +21,7 @@ const YomamaCommand: Command = (interaction) => {
 
 YomamaCommand.options = {
   name: "yomama",
-  description: "No description available.",
+  description: enTranslate("commands/fun/yomama:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("yomama", YomamaCommand);

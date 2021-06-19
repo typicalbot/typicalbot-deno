@@ -3,7 +3,7 @@ import {
   DISCORD_TOKEN,
   EVENT_HANDLER_PORT,
   EVENT_HANDLER_SECRET_KEY,
-} from "../../config.ts";
+} from "../config.ts";
 import {
   camelize,
   GatewayPayload,

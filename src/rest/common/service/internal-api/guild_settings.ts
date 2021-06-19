@@ -1,5 +1,5 @@
 import { bot } from "../../../cache.ts";
-import { INTERNAL_API } from "../../../../../config.ts";
+import { INTERNAL_API } from "../../../../config.ts";
 
 type GuildLanguage = "en_US";
 

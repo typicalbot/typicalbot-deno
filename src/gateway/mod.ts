@@ -3,7 +3,7 @@ import {
   DISCORD_TOKEN,
   EVENT_HANDLER_SECRET_KEY,
   EVENT_HANDLER_URL,
-} from "../../config.ts";
+} from "../config.ts";
 
 // Prepare the `rest` system to work. FOR RESHARDER needs to getGatewayBot
 rest.token = `Bot ${DISCORD_TOKEN}`;

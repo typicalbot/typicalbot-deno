@@ -2,7 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import { DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
+import { DiscordApplicationCommandOptionTypes } from "../../../../deps.ts";
 
 const AnimalCommand: Command = (interaction) => {
   const raw = interaction.data?.options?.[0];

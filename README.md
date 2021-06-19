@@ -9,7 +9,7 @@ the database).
 
 **Run the gateway** `deno run -A src/gateway/mod.ts`
 
-**Run the rest proxy** `deno run --unstable -A mod.ts`
+**Run the rest proxy** `deno run --unstable -A src/rest/mod.ts`
 
 ## License
 

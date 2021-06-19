@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const PingCommand: Command = (interaction) => {
   return basicInteractionResponse(
@@ -13,7 +14,7 @@ const PingCommand: Command = (interaction) => {
 
 PingCommand.options = {
   name: "ping",
-  description: "Check to see if TypicalBot is online and responsive.",
+  description: enTranslate("commands/information/ping:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.set("ping", PingCommand);

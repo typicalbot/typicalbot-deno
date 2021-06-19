@@ -26,4 +26,4 @@ ThouartCommand.options = {
   description: enTranslate("commands/fun/thouart:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("thouart", ThouartCommand);
+bot.commands.add(ThouartCommand);

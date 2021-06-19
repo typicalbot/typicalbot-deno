@@ -113,4 +113,4 @@ KickCommand.options = {
   ],
 };
 
-bot.commands.set("kick", KickCommand);
+bot.commands.add(KickCommand);

@@ -35,4 +35,4 @@ MemeCommand.options = {
   description: enTranslate("commands/fun/meme:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("meme", MemeCommand);
+bot.commands.add(MemeCommand);

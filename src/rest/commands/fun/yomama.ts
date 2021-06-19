@@ -24,4 +24,4 @@ YomamaCommand.options = {
   description: enTranslate("commands/fun/yomama:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("yomama", YomamaCommand);
+bot.commands.add(YomamaCommand);

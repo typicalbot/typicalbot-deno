@@ -19,4 +19,4 @@ CoinflipCommand.options = {
   description: enTranslate("commands/fun/coinflip:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("coinflip", CoinflipCommand);
+bot.commands.add(CoinflipCommand);

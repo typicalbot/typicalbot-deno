@@ -17,4 +17,4 @@ PremiumCommand.options = {
   description: enTranslate("commands/general/premium:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("premium", PremiumCommand);
+bot.commands.add(PremiumCommand);

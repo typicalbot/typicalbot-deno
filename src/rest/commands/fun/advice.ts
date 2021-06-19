@@ -28,4 +28,4 @@ AdviceCommand.options = {
   description: enTranslate("commands/fun/advice:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("advice", AdviceCommand);
+bot.commands.add(AdviceCommand);

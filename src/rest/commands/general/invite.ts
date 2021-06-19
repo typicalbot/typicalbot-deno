@@ -17,4 +17,4 @@ InviteCommand.options = {
   description: enTranslate("commands/general/invite:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("invite", InviteCommand);
+bot.commands.add(InviteCommand);

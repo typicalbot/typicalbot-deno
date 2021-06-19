@@ -28,4 +28,4 @@ ChuckNorrisCommand.options = {
   description: enTranslate("commands/fun/chucknorris:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("chucknorris", ChuckNorrisCommand);
+bot.commands.add(ChuckNorrisCommand);

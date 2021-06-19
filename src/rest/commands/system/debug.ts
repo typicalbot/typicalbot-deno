@@ -105,4 +105,4 @@ DebugCommand.options = {
   ],
 };
 
-bot.commands.set("debug", DebugCommand);
+bot.commands.add(DebugCommand);

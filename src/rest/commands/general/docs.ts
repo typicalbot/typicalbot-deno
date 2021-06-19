@@ -17,4 +17,4 @@ DocsCommand.options = {
   description: enTranslate("commands/general/docs:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("docs", DocsCommand);
+bot.commands.add(DocsCommand);

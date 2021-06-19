@@ -26,4 +26,4 @@ PunCommand.options = {
   description: enTranslate("commands/fun/pun:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("pun", PunCommand);
+bot.commands.add(PunCommand);

@@ -24,4 +24,4 @@ YearFactCommand.options = {
   description: enTranslate("commands/fun/yearfact:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("yearfact", YearFactCommand);
+bot.commands.add(YearFactCommand);

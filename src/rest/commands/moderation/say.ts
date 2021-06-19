@@ -40,4 +40,4 @@ SayCommand.options = {
   ],
 };
 
-bot.commands.set("say", SayCommand);
+bot.commands.add(SayCommand);

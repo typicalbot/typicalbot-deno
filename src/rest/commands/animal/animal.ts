@@ -236,4 +236,4 @@ AnimalCommand.options = {
   ],
 };
 
-bot.commands.set("animal", AnimalCommand);
+bot.commands.add(AnimalCommand);

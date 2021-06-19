@@ -17,4 +17,4 @@ PingCommand.options = {
   description: enTranslate("commands/information/ping:COMMAND_DESCRIPTION"),
 };
 
-bot.commands.set("ping", PingCommand);
+bot.commands.add(PingCommand);

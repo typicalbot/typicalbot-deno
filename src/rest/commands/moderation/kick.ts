@@ -3,22 +3,27 @@ import Command, {
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import {
-  banMember,
   DiscordApplicationCommandOptionTypes,
+  kickMember,
   snowflakeToBigint,
   validatePermissions,
-} from "../../../deps.ts";
+} from "../../../../deps.ts";
+import { translate } from "../../common/util/i18next.ts";
 
-const BanCommand: Command = async (interaction) => {
+const KickCommand: Command = async (interaction) => {
   if (
     !validatePermissions(snowflakeToBigint(interaction.member!.permissions), [
-      "BAN_MEMBERS",
+      "KICK_MEMBERS",
     ])
   ) {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
-      "You are missing the Ban Members permission.",
+      translate(
+        snowflakeToBigint(interaction.guildId!),
+        "permission:USER_MISSING_PERMISSION",
+        { permission: "Kick Members" },
+      ),
     );
   }
 
@@ -58,34 +63,35 @@ const BanCommand: Command = async (interaction) => {
     // TODO: Check role hierarchy
 
     try {
-      await banMember(
+      await kickMember(
         snowflakeToBigint(interaction.guildId!),
         snowflakeToBigint(targetUser.id),
-        {
-          deleteMessageDays: 0,
-          reason: reason,
-        },
+        reason,
       );
     } catch {
       return basicInteractionResponse(
         interaction.id,
         interaction.token,
-        "TypicalBot is missing the Ban Members permission.",
+        translate(
+          snowflakeToBigint(interaction.guildId!),
+          "permission:SELF_MISSING_PERMISSION",
+          { permission: "Kick Members" },
+        ),
       );
     }
 
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
-      `Successfully banned ${targetUser.username}#${targetUser.discriminator} (${targetUser.id}) ${
+      `Successfully kicked ${targetUser.username}#${targetUser.discriminator} (${targetUser.id}) ${
         rawReason ? `for ${reason}` : ""
       }`,
     );
   }
 };
 
-BanCommand.options = {
-  name: "ban",
+KickCommand.options = {
+  name: "kick",
   description: "No description available",
   options: [
     {
@@ -103,4 +109,4 @@ BanCommand.options = {
   ],
 };
 
-bot.commands.set("ban", BanCommand);
+bot.commands.set("kick", KickCommand);

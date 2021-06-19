@@ -1,6 +1,6 @@
 import i18next from "https://deno.land/x/i18next@v20.2.2/index.js";
 import Backend from "https://deno.land/x/i18next_fs_backend@v1.1.1/index.js";
-import { cache } from "../../../deps.ts";
+import { cache } from "../../../../deps.ts";
 import { bot } from "../../cache.ts";
 
 /** This function helps translate the string to the specific guilds needs. */
@@ -44,10 +44,10 @@ export async function determineNamespaces(
 
 export async function loadLanguages() {
   const namespaces = await determineNamespaces(
-    Deno.realPathSync("./src/languages"),
+    Deno.realPathSync("./src/rest/languages"),
   );
   const languageFolder = [
-    ...Deno.readDirSync(Deno.realPathSync("./src/languages")),
+    ...Deno.readDirSync(Deno.realPathSync("./src/rest/languages")),
   ];
 
   return i18next.use(Backend).init(
@@ -64,7 +64,9 @@ export async function loadLanguages() {
         .filter((name) => name),
       ns: namespaces,
       backend: {
-        loadPath: `${Deno.realPathSync("./src/languages")}/{{lng}}/{{ns}}.json`,
+        loadPath: `${
+          Deno.realPathSync("./src/rest/languages")
+        }/{{lng}}/{{ns}}.json`,
       },
       // Silly bug in i18next needs a second param when unnecessary
     },
@@ -74,7 +76,7 @@ export async function loadLanguages() {
 
 export async function reloadLang(language?: string[]) {
   const namespaces = await determineNamespaces(
-    Deno.realPathSync("./src/languages"),
+    Deno.realPathSync("./src/rest/languages"),
   );
 
   i18next.reloadResources(language, namespaces, undefined);

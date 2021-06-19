@@ -19,7 +19,8 @@ export async function importDirectory(path: string) {
           Deno.mainModule.substring(0, Deno.mainModule.lastIndexOf("/"))
         }/${
           currentPath.substring(
-            currentPath.indexOf("src/"),
+            // Adding 9 as that is the length of "/src/rest/"
+            currentPath.indexOf("src/rest/") + 9,
           )
         }#${uniqueFilePathCounter}";`,
       );
@@ -34,7 +35,7 @@ export async function importDirectory(path: string) {
 
 export async function fileLoader() {
   await Deno.writeTextFile(
-    "fileloader.ts",
+    "src/rest/fileloader.ts",
     paths.join("\n").replaceAll("\\", "/"),
   );
   await import(

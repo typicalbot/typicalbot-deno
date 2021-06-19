@@ -3,7 +3,7 @@ import {
   DISCORD_TOKEN,
   EVENT_HANDLER_PORT,
   EVENT_HANDLER_SECRET_KEY,
-} from "./config.ts";
+} from "../../config.ts";
 import {
   camelize,
   GatewayPayload,
@@ -13,14 +13,14 @@ import {
   setBotId,
   updateEventHandlers,
   upsertSlashCommands,
-} from "./deps.ts";
-import { bot } from "./src/cache.ts";
-import { fileLoader, importDirectory } from "./src/common/util/loader.ts";
-import { loadLanguages } from "./src/common/util/i18next.ts";
+} from "../../deps.ts";
+import { bot } from "./cache.ts";
+import { fileLoader, importDirectory } from "./common/util/loader.ts";
+import { loadLanguages } from "./common/util/i18next.ts";
 
 await Promise.all([
-  "./src/commands",
-  "./src/events",
+  "./src/rest/commands",
+  "./src/rest/events",
 ].map((path) => importDirectory(Deno.realPathSync(path))));
 
 await fileLoader();

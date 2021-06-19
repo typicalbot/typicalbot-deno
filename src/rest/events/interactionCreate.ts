@@ -1,5 +1,5 @@
 import { bot } from "../cache.ts";
-import { Interaction, isSlashCommand } from "../../deps.ts";
+import { Interaction, isSlashCommand } from "../../../deps.ts";
 
 const InteractionCreate = (data: Interaction) => {
   // Slash command was executed

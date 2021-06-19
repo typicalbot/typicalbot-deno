@@ -1,0 +1,4 @@
+{
+  "COMMAND_DESCRIPTION": "Delete messages from the current channel.",
+  "SUBCOMMAND_DESCRIPTION_AMOUNT": "The amount of messages to delete from the channel."
+}

@@ -1,0 +1,5 @@
+{
+  "COMMAND_DESCRIPTION": "Kick a user from the server.",
+  "SUBCOMMAND_DESCRIPTION_USER": "The user to kick from the server.",
+  "SUBCOMMAND_DESCRIPTION_REASON": "The reason for kicking the user from the server."
+}

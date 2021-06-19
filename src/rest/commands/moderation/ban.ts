@@ -8,7 +8,7 @@ import {
   snowflakeToBigint,
   validatePermissions,
 } from "../../../../deps.ts";
-import { translate } from "../../common/util/i18next.ts";
+import { enTranslate, translate } from "../../common/util/i18next.ts";
 
 const BanCommand: Command = async (interaction) => {
   if (
@@ -95,18 +95,22 @@ const BanCommand: Command = async (interaction) => {
 
 BanCommand.options = {
   name: "ban",
-  description: "No description available",
+  description: enTranslate("commands/moderation/ban:COMMAND_DESCRIPTION"),
   options: [
     {
       required: true,
       name: "user",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/moderation/ban:SUBCOMMAND_DESCRIPTION_USER",
+      ),
       type: DiscordApplicationCommandOptionTypes.User,
     },
     {
       required: false,
       name: "reason",
-      description: "No description available",
+      description: enTranslate(
+        "commands/moderation/ban:SUBCOMMAND_DESCRIPTION_REASON",
+      ),
       type: DiscordApplicationCommandOptionTypes.String,
     },
   ],

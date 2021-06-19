@@ -1,0 +1,5 @@
+{
+  "COMMAND_DESCRIPTION": "Ban a user from the server.",
+  "SUBCOMMAND_DESCRIPTION_USER": "The user to ban from the server.",
+  "SUBCOMMAND_DESCRIPTION_REASON": "The reason for banning the user from the server."
+}

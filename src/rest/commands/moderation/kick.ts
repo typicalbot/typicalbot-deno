@@ -8,7 +8,7 @@ import {
   snowflakeToBigint,
   validatePermissions,
 } from "../../../../deps.ts";
-import { translate } from "../../common/util/i18next.ts";
+import { enTranslate, translate } from "../../common/util/i18next.ts";
 
 const KickCommand: Command = async (interaction) => {
   if (
@@ -92,18 +92,22 @@ const KickCommand: Command = async (interaction) => {
 
 KickCommand.options = {
   name: "kick",
-  description: "No description available",
+  description: enTranslate("commands/moderation/kick:COMMAND_DESCRIPTION"),
   options: [
     {
       required: true,
       name: "user",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/moderation/kick:SUBCOMMAND_DESCRIPTION_USER",
+      ),
       type: DiscordApplicationCommandOptionTypes.User,
     },
     {
       required: false,
       name: "reason",
-      description: "No description available",
+      description: enTranslate(
+        "commands/moderation/kick:SUBCOMMAND_DESCRIPTION_REASON",
+      ),
       type: DiscordApplicationCommandOptionTypes.String,
     },
   ],

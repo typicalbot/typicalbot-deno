@@ -10,7 +10,7 @@ import { enTranslate } from "../../common/util/i18next.ts";
 
 const DebugCommand: Command = (interaction) => {
   // TODO: Change to use application team owners
-  if (interaction.member!.user!.id !== "187342661060001792") {
+  if (!bot.applicationOwners.includes(interaction.member!.user!.id)) {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,

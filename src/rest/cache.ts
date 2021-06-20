@@ -6,4 +6,5 @@ export const bot = {
   commands: new CommandCollection(),
   events: {} as EventHandlers,
   guildSettings: new Collection<bigint, GuildSettings>(),
+  applicationOwners: [] as string[]
 };

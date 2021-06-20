@@ -50,8 +50,12 @@ This section provides a quick-start guide
 3. Cache the dependencies, ie. `deno cache deps.ts`
 4. Create an `.env` file using the example file, fill out the missing variables.
 5. Run `deno run --unstable -A src/rest/mod.ts` to start the REST proxy.
+   Optionally, [denox](https://github.com/bentoumitech/denox#installupgrade) can
+   be installed and the REST proxy can be started with `denox run start:rest`.
 6. In a separate terminal, run `deno run -A src/gateway/mod.ts` to start the
-   gateway.
+   gateway. Optionally,
+   [denox](https://github.com/bentoumitech/denox#installupgrade) can be
+   installed and the gateway can be started with `denox run start:gateway`.
 
 ## Security Vulnerabilities
 

@@ -1,23 +1,3 @@
-/**
- * NOTICE: THIS FILE HAS BEEN MODIFIED BY TYPICALBOT LLC IN COMPLIANCE WITH
- *         THE APACHE 2.0 LICENSE FROM THE ORIGINAL WORK BY DISCORDENO.
- * Modifications copyright (c) 2021 TypicalBot LLC
- *
- * Copyright 2021 Discordeno
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
-
 import i18next from "https://deno.land/x/i18next@v20.2.2/index.js";
 import Backend from "https://deno.land/x/i18next_fs_backend@v1.1.1/index.js";
 import { cache } from "../../../../deps.ts";

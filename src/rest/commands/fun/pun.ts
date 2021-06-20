@@ -25,4 +25,4 @@ PunCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set("pun", PunCommand);
+bot.commands.add(PunCommand);

@@ -23,4 +23,4 @@ YomamaCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set("yomama", YomamaCommand);
+bot.commands.add(YomamaCommand);

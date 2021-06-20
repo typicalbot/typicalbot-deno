@@ -18,4 +18,4 @@ CoinflipCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set("coinflip", CoinflipCommand);
+bot.commands.add(CoinflipCommand);

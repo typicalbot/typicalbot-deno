@@ -16,4 +16,4 @@ PingCommand.options = {
   description: "Check to see if TypicalBot is online and responsive.",
 };
 
-bot.commands.set("ping", PingCommand);
+bot.commands.add(PingCommand);

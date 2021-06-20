@@ -27,4 +27,4 @@ AdviceCommand.options = {
   description: "No description available.",
 };
 
-bot.commands.set("advice", AdviceCommand);
+bot.commands.add(AdviceCommand);

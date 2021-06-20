@@ -61,5 +61,7 @@ on how to report security vulnerabilities.
 
 ## License
 
-TypicalBot is an open source software licensed under the
-[Apache 2.0 license](LICENSE).
+TypicalBot is open source software licensed under the
+[Apache License, Version 2.0](LICENSE). TypicalBot uses modifications of
+software developed by [Discordeno](https://github.com/discordeno) in compliance
+with its license, a copy of which is available with the source of this software.

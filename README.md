@@ -51,12 +51,12 @@ This section provides a quick-start guide
 4. Create an `.env` file using the example file, fill out the missing variables.
 5. Run `deno run --unstable -A src/rest/mod.ts` to start the REST proxy.
 6. In a separate terminal, run `deno run -A src/gateway/mod.ts` to start the
-   Gateway.
+   gateway.
 
 ## Security Vulnerabilities
 
 Please review our
-[security-policy](https://github.com/typicalbot/typicalbot-deno/security/policy)
+[security policy](https://github.com/typicalbot/typicalbot-deno/security/policy)
 on how to report security vulnerabilities.
 
 ## License

@@ -1,0 +1,4 @@
+{
+  "COMMAND_DESCRIPTION": "Send a custom message to the current channel.",
+  "SUBCOMMAND_DESCRIPTION_MESSAGE": "The message to send to the current channel."
+}

@@ -1,0 +1,13 @@
+{
+  "COMMAND_DESCRIPTION": "Choose an animal to receive a random fact.",
+  "SUBCOMMAND_DESCRIPTION_BIRD": "Return a random fact about birds.",
+  "SUBCOMMAND_DESCRIPTION_CAT": "Return a random fact about cats.",
+  "SUBCOMMAND_DESCRIPTION_DOG": "Return a random fact about dogs.",
+  "SUBCOMMAND_DESCRIPTION_ELEPHANT": "Return a random fact about elephants.",
+  "SUBCOMMAND_DESCRIPTION_FOX": "Return a random fact about foxes.",
+  "SUBCOMMAND_DESCRIPTION_KANGAROO": "Return a random fact about kangaroos.",
+  "SUBCOMMAND_DESCRIPTION_KOALA": "Return a random fact about koalas.",
+  "SUBCOMMAND_DESCRIPTION_PANDA": "Return a random fact about pandas.",
+  "SUBCOMMAND_DESCRIPTION_RACCOON": "Return a random fact about raccoons.",
+  "SUBCOMMAND_DESCRIPTION_WHALE": "Return a random fact about whales."
+}

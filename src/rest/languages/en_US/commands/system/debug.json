@@ -1,0 +1,5 @@
+{
+  "COMMAND_DESCRIPTION": "A variety of tools for debugging TypicalBot.",
+  "SUBCOMMAND_DESCRIPTION_CACHE": "Return the amount of items in each cache collection.",
+  "SUBCOMMAND_DESCRIPTION_PROFILER": "Return the memory usage of TypicalBot."
+}

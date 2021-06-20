@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const MemeCommand: Command = async (interaction) => {
   const { data: { children } } = await fetch(
@@ -31,7 +32,7 @@ const MemeCommand: Command = async (interaction) => {
 
 MemeCommand.options = {
   name: "meme",
-  description: "No description available.",
+  description: enTranslate("commands/fun/meme:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.add(MemeCommand);

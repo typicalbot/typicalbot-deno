@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const YearFactCommand: Command = (interaction) => {
   return fetch("http://numbersapi.com/random/year")
@@ -20,7 +21,7 @@ const YearFactCommand: Command = (interaction) => {
 
 YearFactCommand.options = {
   name: "yearfact",
-  description: "No description available.",
+  description: enTranslate("commands/fun/yearfact:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.add(YearFactCommand);

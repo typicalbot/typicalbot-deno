@@ -1,0 +1,13 @@
+{
+  "COMMAND_DESCRIPTION": "Choose an animal to receive a random image.",
+  "SUBCOMMAND_DESCRIPTION_BIRD": "Return a random image about birds.",
+  "SUBCOMMAND_DESCRIPTION_CAT": "Return a random image about cats.",
+  "SUBCOMMAND_DESCRIPTION_DOG": "Return a random image about dogs.",
+  "SUBCOMMAND_DESCRIPTION_FOX": "Return a random image about foxes.",
+  "SUBCOMMAND_DESCRIPTION_KANGAROO": "Return a random image about kangaroos.",
+  "SUBCOMMAND_DESCRIPTION_KOALA": "Return a random image about koalas.",
+  "SUBCOMMAND_DESCRIPTION_PANDA": "Return a random image about pandas.",
+  "SUBCOMMAND_DESCRIPTION_RACCOON": "Return a random image about raccoons.",
+  "SUBCOMMAND_DESCRIPTION_RED_PANDA": "Return a random image about red pandas.",
+  "SUBCOMMAND_DESCRIPTION_WHALE": "Return a random image about whales."
+}

@@ -3,6 +3,7 @@ import Command, {
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import { DiscordApplicationCommandOptionTypes } from "../../../../deps.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const DiceCommand: Command = (interaction) => {
   const raw = interaction.data?.options?.[0];
@@ -68,12 +69,12 @@ const DiceCommand: Command = (interaction) => {
 
 DiceCommand.options = {
   name: "dice",
-  description: "No description available.",
+  description: enTranslate("commands/fun/dice:COMMAND_DESCRIPTION"),
   options: [
     {
       required: false,
       name: "XdY",
-      description: "The amount of dices (X) and amount of sides (Y)",
+      description: enTranslate("commands/fun/dice:SUBCOMMAND_DESCRIPTION_XDY"),
       type: DiscordApplicationCommandOptionTypes.String,
     },
   ],

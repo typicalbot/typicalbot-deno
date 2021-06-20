@@ -2,6 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const CoinflipCommand: Command = (interaction) => {
   const rand = Math.floor(Math.random() * 2);
@@ -15,7 +16,7 @@ const CoinflipCommand: Command = (interaction) => {
 
 CoinflipCommand.options = {
   name: "coinflip",
-  description: "No description available.",
+  description: enTranslate("commands/fun/coinflip:COMMAND_DESCRIPTION"),
 };
 
 bot.commands.add(CoinflipCommand);

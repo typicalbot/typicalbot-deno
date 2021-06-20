@@ -3,6 +3,7 @@ import Command, {
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
 import { DiscordApplicationCommandOptionTypes } from "../../../../deps.ts";
+import { enTranslate } from "../../common/util/i18next.ts";
 
 const SayCommand: Command = (interaction) => {
   const raw = interaction.data?.options?.[0];
@@ -26,12 +27,14 @@ const SayCommand: Command = (interaction) => {
 
 SayCommand.options = {
   name: "say",
-  description: "No description available.",
+  description: enTranslate("commands/moderation/say:COMMAND_DESCRIPTION"),
   options: [
     {
       required: false,
       name: "message",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/moderation/say:SUBCOMMAND_DESCRIPTION_MESSAGE",
+      ),
       type: DiscordApplicationCommandOptionTypes.String,
     },
   ],

@@ -9,7 +9,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import { translate } from "../../common/util/i18next.ts";
+import { enTranslate, translate } from "../../common/util/i18next.ts";
 
 const PurgeCommand: Command = async (interaction) => {
   if (
@@ -99,12 +99,14 @@ const PurgeCommand: Command = async (interaction) => {
 
 PurgeCommand.options = {
   name: "purge",
-  description: "No description available.",
+  description: enTranslate("commands/moderation/purge:COMMAND_DESCRIPTION"),
   options: [
     {
       required: false,
       name: "amount",
-      description: "No description available.",
+      description: enTranslate(
+        "commands/moderation/purge:SUBCOMMAND_DESCRIPTION_AMOUNT",
+      ),
       type: DiscordApplicationCommandOptionTypes.Integer,
     },
   ],

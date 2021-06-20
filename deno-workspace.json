@@ -1,17 +1,17 @@
 {
-    "scripts": {
-        "start:gateway": {
-            "file": "src/gateway/mod.ts",
-            "deno_options": {
-                "allow-all": true
-            }
-        },
-        "start:rest": {
-            "file": "src/rest/mod.ts",
-            "deno_options": {
-                "allow-all": true,
-                "unstable": true
-            }
-        }
+  "scripts": {
+    "start:gateway": {
+      "file": "src/gateway/mod.ts",
+      "deno_options": {
+        "allow-all": true
+      }
+    },
+    "start:rest": {
+      "file": "src/rest/mod.ts",
+      "deno_options": {
+        "allow-all": true,
+        "unstable": true
+      }
     }
+  }
 }

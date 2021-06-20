@@ -41,7 +41,7 @@ const SlowmodeCommand: Command = async (interaction) => {
   }
 
   if (raw.type === DiscordApplicationCommandOptionTypes.String && raw.value) {
-    const time = (ms(+raw.value) as number);
+    const time = /[A-Za-z]?$/.test(raw.value) ? (ms(raw.value) as number) : +raw.value;
 
     if (!isFinite(time) || time > 21600) {
       return basicInteractionResponse(

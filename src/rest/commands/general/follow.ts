@@ -30,77 +30,46 @@ const FollowCommand: Command = async (interaction) => {
 
   const raw = interaction.data?.options?.[0];
 
-  if (raw?.name === "announcements") {
-    const channelId: bigint = snowflakeToBigint(interaction.channelId!);
-
-    const channelWebhooks = await getChannelWebhooks(
-      channelId,
-    );
-
-    if (channelWebhooks.size >= 10) {
-      return basicInteractionResponse(
-        interaction.id,
-        interaction.token,
-        translate(guildId, "commands/general/follow:WEBHOOK_LIMIT"),
-      );
-    }
-
-    try {
-      // 268559149175013376 is the ID of our announcement channel.
-      await followChannel(snowflakeToBigint("268559149175013376"), channelId);
-    } catch {
-      return basicInteractionResponse(
-        interaction.id,
-        interaction.token,
-        translate(guildId, "permission:SELF_MISSING_PERMISSION", {
-          permission: "Manage Webhooks",
-        }),
-      );
-    }
-
-    return basicInteractionResponse(
-      interaction.id,
-      interaction.token,
-      translate(guildId, "commands/general/follow:ANNOUNCEMENTS_FOLLOWED"),
-    );
-  } else if (raw?.name === "status") {
-    const channelId: bigint = snowflakeToBigint(interaction.channelId!);
-
-    const channelWebhooks = await getChannelWebhooks(
-      channelId,
-    );
-
-    if (channelWebhooks.size >= 10) {
-      return basicInteractionResponse(
-        interaction.id,
-        interaction.token,
-        translate(guildId, "commands/general/follow:WEBHOOK_LIMIT"),
-      );
-    }
-
-    try {
-      // 621817852726607882 is the ID of our status channel.
-      await followChannel(snowflakeToBigint("621817852726607882"), channelId);
-    } catch {
-      return basicInteractionResponse(
-        interaction.id,
-        interaction.token,
-        translate(guildId, "permission:SELF_MISSING_PERMISSION", {
-          permission: "Manage Webhooks",
-        }),
-      );
-    }
-
-    return basicInteractionResponse(
-      interaction.id,
-      interaction.token,
-      translate(guildId, "commands/general/follow:STATUS_FOLLOWED"),
-    );
-  } else {
+  if (!raw || !(raw.name === "announcements" || raw.name === "status")) {
     return basicInteractionResponse(
       interaction.id,
       interaction.token,
       translate(guildId, "commands/general/follow:INVALID_ARGUMENT"),
+    );
+  }
+
+  const channelId: bigint = snowflakeToBigint(interaction.channelId!);
+  const channelToFollow = Deno.env.get(
+    `FOLLOW_${raw.name.toUpperCase()}`,
+  );
+
+  try {
+    const channelWebhooks = await getChannelWebhooks(
+      channelId,
+    );
+
+    if (channelWebhooks.size >= 10) {
+      return basicInteractionResponse(
+        interaction.id,
+        interaction.token,
+        translate(guildId, "commands/general/follow:WEBHOOK_LIMIT"),
+      );
+    }
+
+    await followChannel(snowflakeToBigint(channelToFollow!), channelId);
+
+    return basicInteractionResponse(
+      interaction.id,
+      interaction.token,
+      translate(guildId, `commands/general/follow:${channelToFollow!}`),
+    );
+  } catch {
+    return basicInteractionResponse(
+      interaction.id,
+      interaction.token,
+      translate(guildId, "permission:SELF_MISSING_PERMISSION", {
+        permission: "Manage Webhooks",
+      }),
     );
   }
 };

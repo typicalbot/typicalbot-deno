@@ -5,10 +5,9 @@ import {
   EVENT_HANDLER_SECRET_KEY,
 } from "../config.ts";
 import {
-  Application,
   camelize,
-  endpoints,
   GatewayPayload,
+  getApplicationInfo,
   handlers,
   rest,
   setApplicationId,
@@ -41,18 +40,15 @@ setBotId(DISCORD_ID!);
 setApplicationId(DISCORD_ID!);
 // TODO: Remove this once Discordeno has a helper function for this
 // Manually add application owners
-const rawApplicationData = await rest.runMethod<Omit<Application, "flags">>(
-  "get",
-  endpoints.OAUTH2_APPLICATION,
-);
+const applicationInfo = await getApplicationInfo();
 
-if (rawApplicationData) {
-  if (rawApplicationData.team) {
-    rawApplicationData.team.members.forEach((m) =>
+if (applicationInfo) {
+  if (applicationInfo.team) {
+    applicationInfo.team.members.forEach((m) =>
       bot.applicationOwners.push(m.user.id)
     );
   } else {
-    bot.applicationOwners.push(rawApplicationData.owner!.id!);
+    bot.applicationOwners.push(applicationInfo.owner!.id!);
   }
 }
 // Manually upsert slash commands as ready event not emitted

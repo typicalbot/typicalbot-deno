@@ -51,7 +51,9 @@ if (globalCommands.length) {
 
 // Start listening on localhost.
 const server = Deno.listen({ port: parseInt(EVENT_HANDLER_PORT!) });
-console.log(`HTTP webserver running.  Access it at:  http://localhost:8080/`);
+console.log(
+  `HTTP webserver running.  Access it at:  http://localhost:${EVENT_HANDLER_PORT}/`,
+);
 
 // Connections to the server will be yielded up as an async iterable.
 for await (const conn of server) {

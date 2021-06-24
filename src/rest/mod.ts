@@ -7,6 +7,7 @@ import {
 import {
   camelize,
   GatewayPayload,
+  getApplicationInfo,
   handlers,
   rest,
   setApplicationId,
@@ -37,6 +38,19 @@ rest.token = `Bot ${DISCORD_TOKEN}`;
 // Manually set botId and applicationId as ready event not emitted
 setBotId(DISCORD_ID!);
 setApplicationId(DISCORD_ID!);
+// TODO: Remove this once Discordeno has a helper function for this
+// Manually add application owners
+const applicationInfo = await getApplicationInfo();
+
+if (applicationInfo) {
+  if (applicationInfo.team) {
+    applicationInfo.team.members.forEach((m) =>
+      bot.applicationOwners.push(m.user.id)
+    );
+  } else {
+    bot.applicationOwners.push(applicationInfo.owner!.id!);
+  }
+}
 // Manually upsert slash commands as ready event not emitted
 const globalCommands = [];
 

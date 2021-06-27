@@ -51,10 +51,12 @@ export async function determineNamespaces(
 
 export async function loadLanguages() {
   const namespaces = await determineNamespaces(
-    Deno.realPathSync("./src/rest/languages"),
+    Deno.realPathSync("./packages/typicalbot-rest/src/languages"),
   );
   const languageFolder = [
-    ...Deno.readDirSync(Deno.realPathSync("./src/rest/languages")),
+    ...Deno.readDirSync(
+      Deno.realPathSync("./packages/typicalbot-rest/src/languages"),
+    ),
   ];
 
   return i18next.use(Backend).init(
@@ -72,7 +74,7 @@ export async function loadLanguages() {
       ns: namespaces,
       backend: {
         loadPath: `${
-          Deno.realPathSync("./src/rest/languages")
+          Deno.realPathSync("./packages/typicalbot-rest/src/languages")
         }/{{lng}}/{{ns}}.json`,
       },
       // Silly bug in i18next needs a second param when unnecessary
@@ -83,7 +85,7 @@ export async function loadLanguages() {
 
 export async function reloadLang(language?: string[]) {
   const namespaces = await determineNamespaces(
-    Deno.realPathSync("./src/rest/languages"),
+    Deno.realPathSync("./packages/typicalbot-rest/src/languages"),
   );
 
   i18next.reloadResources(language, namespaces, undefined);

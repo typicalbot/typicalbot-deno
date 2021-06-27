@@ -2,10 +2,7 @@ import Command, {
   basicInteractionResponse,
 } from "../../common/command/Command.ts";
 import { bot } from "../../cache.ts";
-import {
-  cache,
-  DiscordApplicationCommandOptionTypes,
-} from "../../../../deps.ts";
+import { cache, DiscordApplicationCommandOptionTypes } from "../../../deps.ts";
 import { enTranslate } from "../../common/util/i18next.ts";
 
 const DebugCommand: Command = (interaction) => {

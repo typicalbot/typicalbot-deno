@@ -24,8 +24,8 @@ await loadLanguages();
 
 // Load commands and events
 await Promise.all([
-  "./src/rest/commands",
-  "./src/rest/events",
+  "./packages/typicalbot-rest/src/commands",
+  "./packages/typicalbot-rest/src/events",
 ].map((path) => importDirectory(Deno.realPathSync(path))));
 
 await fileLoader();

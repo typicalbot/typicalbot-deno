@@ -1,15 +1,17 @@
 {
   "scripts": {
     "start:gateway": {
-      "file": "src/gateway/mod.ts",
+      "file": "packages/typicalbot-gateway/src/mod.ts",
       "deno_options": {
-        "allow-all": true
+        "allow-net": true,
+        "allow-env": true
       }
     },
     "start:rest": {
-      "file": "src/rest/mod.ts",
+      "file": "packages/typicalbot-rest/src/mod.ts",
       "deno_options": {
-        "allow-all": true,
+        "allow-net": true,
+        "allow-env": true,
         "unstable": true
       }
     }

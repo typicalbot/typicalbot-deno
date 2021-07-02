@@ -4,7 +4,8 @@
       "file": "packages/typicalbot-gateway/src/mod.ts",
       "deno_options": {
         "allow-net": true,
-        "allow-env": true
+        "allow-env": true,
+        "allow-read": true
       }
     },
     "start:rest": {

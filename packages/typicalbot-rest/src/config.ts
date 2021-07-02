@@ -1,7 +1,7 @@
 import { config } from "https://deno.land/x/dotenv/mod.ts";
 
 config({
-  path: "./packages/typicalbot-rest/.env",
+  path: Deno.realPathSync("./packages/typicalbot-rest/.env"),
   export: true,
 });
 

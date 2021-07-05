@@ -1,0 +1,9 @@
+{
+  "COMMAND_DESCRIPTION": "Creates a webhook to follow TypicalBot announcements or status updates in this channel.",
+  "SUBCOMMAND_DESCRIPTION_ANNOUNCEMENTS": "Follow TypicalBot announcements in this channel.",
+  "SUBCOMMAND_DESCRIPTION_STATUS": "Follow TypicalBot status updates in this channel.",
+  "INVALID_ARGUMENT": "Please specify which TypicalBot channel you want to follow.",
+  "WEBHOOK_LIMIT": "The maximum webhooks that Discord allows in one channel is 10. Please remove a webhook and try again.",
+  "FOLLOW_ANNOUNCEMENTS": "You have successfully followed TypicalBot announcements in this channel.",
+  "FOLLOW_STATUS": "You have successfully followed TypicalBot status updates in this channel."
+}

@@ -1,1 +1,0 @@
-# TypicalBot Datastore File

@@ -1,0 +1,6 @@
+[submodule "packages/typicalbot-votifer"]
+	path = packages/typicalbot-votifer
+	url = git@github.com:typicalbot/typicalbot-votifier.git
+[submodule "packages/typicalbot-datastore-mongo"]
+	path = packages/typicalbot-datastore-mongo
+	url = git@github.com:typicalbot/typicalbot-datastore-mongo.git
